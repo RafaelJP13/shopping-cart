@@ -12,3 +12,34 @@ services:
       - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../infra/Dockerfile.backend.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/shopping_cart
+      JWT_SECRET: supersecret
+
+  postgres:
+    image: postgres:16
+    container_name: shopping-cart-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: shopping_cart
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
