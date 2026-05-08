@@ -4,7 +4,7 @@ import { formatCurrency } from "../utils/formatters";
 import { saveOrder } from "../services/indexedDBClient";
 
 export const CartSidebar: React.FC = () => {
-    const { cartItems, total, clearCart } = useShoppingCart();
+    const { cartItems, total, clearCart, removeItem } = useShoppingCart();
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
@@ -15,10 +15,7 @@ export const CartSidebar: React.FC = () => {
             const orderId = await saveOrder(
                 total,
                 cartItems.map(({ code, description, price, quantity }) => ({
-                    code,
-                    description,
-                    price,
-                    quantity,
+                    code, description, price, quantity,
                 }))
             );
             clearCart();
@@ -42,12 +39,19 @@ export const CartSidebar: React.FC = () => {
                 ) : (
                     <div className="space-y-2">
                         {cartItems.map((item) => (
-                            <div key={item.code} className="flex justify-between items-center border-b py-1">
-                                <div className="flex flex-col">
-                                    <span className="font-medium">{item.description}</span>
+                            <div key={item.code} className="flex justify-between items-center border-b py-1 gap-2">
+                                <div className="flex flex-col flex-1 min-w-0">
+                                    <span className="font-medium truncate">{item.description}</span>
                                     <span className="text-gray-500 text-sm">(x{item.quantity})</span>
                                 </div>
-                                <span className="font-semibold">{formatCurrency(item.price)}</span>
+                                <span className="font-semibold shrink-0">{formatCurrency(item.price)}</span>
+                                <button
+                                    onClick={() => removeItem(item.code)}
+                                    title="Remover item"
+                                    className="text-red-400 hover:text-red-600 transition-colors shrink-0 text-lg leading-none cursor-pointer"
+                                >
+                                    ✕
+                                </button>
                             </div>
                         ))}
                     </div>
@@ -77,9 +81,7 @@ export const CartSidebar: React.FC = () => {
                 </button>
 
                 {message && (
-                    <p className="text-sm text-center text-gray-700 mt-1">
-                        {message}
-                    </p>
+                    <p className="text-sm text-center text-gray-700 mt-1">{message}</p>
                 )}
             </div>
         </aside>
