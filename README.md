@@ -70,7 +70,7 @@ git clone https://github.com/RafaelJP13/compre-mais.git
 ## Navigate to folder project
 
 ```bash
-docker composer up --build
+docker compose up --build
 ```
 Backend will run on:
 
