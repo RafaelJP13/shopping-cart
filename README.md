@@ -1,6 +1,6 @@
 # Shopping Cart
 
-Este é um projeto de teste feito com **React**, **TypeScript**, **TailwindCSS** e armazenamento de pedidos no **IndexedDB**. Ele inclui catálogo de produtos, carrinho de compras e histórico de pedidos.
+Este é um projeto feito com **React**, **TypeScript**, **TailwindCSS** e armazenamento de pedidos no **IndexedDB**. Ele inclui catálogo de produtos, carrinho de compras e histórico de pedidos.
 
 ---
 
