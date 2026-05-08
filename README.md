@@ -65,58 +65,22 @@ git clone https://github.com/RafaelJP13/compre-mais.git
 
 ---
 
-# 🔧 Backend Setup
+# 🔧 Setup
 
-## Navigate to backend folder
-
-```bash
-cd backend
-```
-
-## Install dependencies
+## Navigate to folder project
 
 ```bash
-npm install
+docker composer up --build
 ```
-
-## Run development server
-
-```bash
-npm run start:dev
-```
-
 Backend will run on:
 
 ```bash
 http://localhost:3000
 ```
-
----
-
-# 💻 Frontend Setup
-
-## Navigate to frontend folder
-
-```bash
-cd frontend
-```
-
-## Install dependencies
-
-```bash
-npm install
-```
-
-## Run development server
-
-```bash
-npm run dev
-```
-
 Frontend will run on:
 
 ```bash
-http://localhost:3001
+http://localhost:5173
 ```
 
 ---
