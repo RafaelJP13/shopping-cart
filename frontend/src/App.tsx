@@ -1,31 +1,42 @@
 import { useState } from "react";
+
 import { CatalogPage } from "./pages/CatalogPage";
 import OrdersPage from "./pages/OrdersPage";
+import LoginPage from "./pages/LoginPage";
+
 import { CartProvider } from "./context/CartContext";
 import { CartSidebar } from "./components/CartSidebar";
 
+type Page = "Login" | "Produtos" | "Pedidos";
+
 export default function App() {
-    const [page, setPage] = useState<"Produtos" | "Pedidos">("Produtos");
+    const [page, setPage] = useState<Page>("Login");
+
+    if (page === "Login") {
+        return <LoginPage onLogin={() => setPage("Produtos")} />;
+    }
 
     return (
         <CartProvider>
             <div className="min-h-screen bg-neutral-100 p-4 flex flex-col">
-                <nav className="flex gap-2 mb-4 text-lg font-medium bg-white p-2 rounded shadow-sm cursor-pointer">
+                <nav className="flex gap-2 mb-4 text-lg font-medium bg-white p-2 rounded shadow-sm">
                     <button
-                        className={`px-3 py-1 rounded hover:bg-gray-200 transition ${page === "Produtos" ? "bg-gray-200" : ""}`}
+                        className={`px-3 py-1 rounded hover:bg-gray-200 transition ${page === "Produtos" ? "bg-gray-200" : ""
+                            }`}
                         onClick={() => setPage("Produtos")}
                     >
                         Produtos
                     </button>
+
                     <button
-                        className={`px-3 py-1 rounded hover:bg-gray-200 transition cursor-pointer ${page === "Pedidos" ? "bg-gray-200" : ""}`}
+                        className={`px-3 py-1 rounded hover:bg-gray-200 transition ${page === "Pedidos" ? "bg-gray-200" : ""
+                            }`}
                         onClick={() => setPage("Pedidos")}
                     >
                         Pedidos
                     </button>
                 </nav>
 
-                {/* Stack vertically on mobile, side-by-side on md+ */}
                 <div className="flex flex-col md:flex-row gap-4 flex-1">
                     <main className="flex-1 min-w-0">
                         {page === "Produtos" && <CatalogPage />}
