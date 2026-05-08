@@ -1,6 +1,9 @@
+import MyChart from "../components/charts/MyChart";
+
 export function DashboardPage() {
     return (
         <div className="space-y-4">
+            <MyChart />
 
             {/* Header */}
             <div className="bg-white p-4 rounded shadow-sm">
@@ -30,16 +33,8 @@ export function DashboardPage() {
 
             </div>
 
-            {/* Recent activity */}
-            <div className="bg-white p-4 rounded shadow-sm">
-                <h2 className="font-semibold mb-2">Atividade recente</h2>
 
-                <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Pedido #1023 foi criado</li>
-                    <li>• Produto "Camiseta" atualizado</li>
-                    <li>• Novo usuário registrado</li>
-                </ul>
-            </div>
+
 
         </div>
     );

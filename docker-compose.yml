@@ -17,6 +17,7 @@ services:
     build:
       context: ./backend
       dockerfile: ../infra/Dockerfile.backend.dev
+    command: sh -c "npx prisma migrate deploy && npm run start:dev"
     ports:
       - "3000:3000"
     volumes:
