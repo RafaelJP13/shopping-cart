@@ -57,7 +57,7 @@ export class AuthService {
         });
 
         if (!user) {
-            throw new UnauthorizedException('Invalid credentials');
+            throw new UnauthorizedException('E-mail ou senha inválidos. Tente novamente.');
         }
 
         const passwordMatch = await bcrypt.compare(
@@ -66,7 +66,7 @@ export class AuthService {
         );
 
         if (!passwordMatch) {
-            throw new UnauthorizedException('Invalid credentials');
+            throw new UnauthorizedException('E-mail ou senha inválidos. Tente novamente.');
         }
 
         const token = this.generateToken(user);

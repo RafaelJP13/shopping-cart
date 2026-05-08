@@ -1,38 +1,80 @@
-import { ShoppingBag, Mail, Lock } from 'lucide-react';
+import { useState } from "react";
+import { ShoppingBag, Mail, Lock } from "lucide-react";
 
 type LoginPageProps = {
     onLogin: () => void;
 };
 
 export default function LoginPage({ onLogin }: LoginPageProps) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
+    async function handleLogin() {
+        try {
+            setLoading(true);
+            setError("");
+
+            const res = await fetch("http://localhost:3000/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                }),
+            });
+
+            if (!res.ok) {
+                throw new Error("E-mail ou senha inválidos. Tente novamente.");
+            }
+
+            const data = await res.json();
+
+            // Save token (important for auth)
+            localStorage.setItem("token", data.token);
+
+            onLogin(); // go to dashboard
+        } catch (err: any) {
+            setError(err.message || "Login failed");
+        } finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <div className="min-h-screen bg-zinc-950 flex items-center justify-center px-4">
             <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-2xl">
 
+                {/* HEADER */}
                 <div className="flex flex-col items-center mb-8">
                     <div className="bg-white text-black p-3 rounded-2xl mb-4">
                         <ShoppingBag size={32} />
                     </div>
 
                     <h1 className="text-3xl font-bold text-white">
-                        Welcome Back
+                        Bem vindo!
                     </h1>
 
                     <p className="text-zinc-400 mt-2 text-center">
-                        Login to continue shopping
+                        Faça login para continuar comprando
                     </p>
                 </div>
 
+                {/* FORM */}
                 <form
                     className="space-y-5"
                     onSubmit={(e) => {
                         e.preventDefault();
-                        onLogin();
+                        handleLogin();
                     }}
                 >
+                    {/* EMAIL */}
                     <div>
                         <label className="text-sm text-zinc-300 mb-2 block">
-                            Email
+                            E-mail
                         </label>
 
                         <div className="relative">
@@ -44,14 +86,17 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
                             <input
                                 type="email"
                                 placeholder="you@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 className="w-full bg-zinc-800 border border-zinc-700 rounded-xl py-3 pl-10 pr-4 text-white outline-none focus:ring-2 focus:ring-white"
                             />
                         </div>
                     </div>
 
+                    {/* PASSWORD */}
                     <div>
                         <label className="text-sm text-zinc-300 mb-2 block">
-                            Password
+                            Senha
                         </label>
 
                         <div className="relative">
@@ -63,53 +108,29 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
                             <input
                                 type="password"
                                 placeholder="••••••••"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 className="w-full bg-zinc-800 border border-zinc-700 rounded-xl py-3 pl-10 pr-4 text-white outline-none focus:ring-2 focus:ring-white"
                             />
                         </div>
                     </div>
 
-                    <div className="flex items-center justify-between text-sm">
-                        <label className="flex items-center gap-2 text-zinc-400">
-                            <input type="checkbox" />
-                            Remember me
-                        </label>
+                    {/* ERROR */}
+                    {error && (
+                        <p className="text-red-400 text-sm">
+                            {error}
+                        </p>
+                    )}
 
-                        <button
-                            type="button"
-                            className="text-zinc-300 hover:text-white transition"
-                        >
-                            Forgot password?
-                        </button>
-                    </div>
-
+                    {/* SUBMIT */}
                     <button
                         type="submit"
-                        className="w-full bg-white text-black font-semibold py-3 rounded-xl hover:bg-zinc-200 transition"
+                        disabled={loading}
+                        className="w-full bg-white text-black font-semibold py-3 rounded-xl hover:bg-zinc-200 transition disabled:opacity-50"
                     >
-                        Sign In
+                        {loading ? "Carregando..." : "Entrar"}
                     </button>
                 </form>
-
-                <div className="relative my-6">
-                    <div className="border-t border-zinc-800"></div>
-
-                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-zinc-900 px-3 text-zinc-500 text-sm">
-                        OR
-                    </span>
-                </div>
-
-                <button
-                    className="w-full border border-zinc-700 text-white py-3 rounded-xl hover:bg-zinc-800 transition"
-                >
-                    Continue with Google
-                </button>
-
-                <p className="text-center text-zinc-400 text-sm mt-6">
-                    Don&apos;t have an account?
-                    <span className="text-white hover:underline cursor-pointer ml-1">
-                        Create account
-                    </span>
-                </p>
             </div>
         </div>
     );

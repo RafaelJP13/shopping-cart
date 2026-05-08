@@ -3,51 +3,27 @@ import { useState } from "react";
 import { CatalogPage } from "./pages/CatalogPage";
 import OrdersPage from "./pages/OrdersPage";
 import LoginPage from "./pages/LoginPage";
+import { DashboardPage } from "./pages/DashboardPage";
 
 import { CartProvider } from "./context/CartContext";
-import { CartSidebar } from "./components/CartSidebar";
+import { DashboardLayout } from "./layouts/DashboardLayout";
 
-type Page = "Login" | "Produtos" | "Pedidos";
+type Page = "Login" | "Dashboard" | "Produtos" | "Pedidos";
 
 export default function App() {
     const [page, setPage] = useState<Page>("Login");
 
     if (page === "Login") {
-        return <LoginPage onLogin={() => setPage("Produtos")} />;
+        return <LoginPage onLogin={() => setPage("Dashboard")} />;
     }
 
     return (
         <CartProvider>
-            <div className="min-h-screen bg-neutral-100 p-4 flex flex-col">
-                <nav className="flex gap-2 mb-4 text-lg font-medium bg-white p-2 rounded shadow-sm">
-                    <button
-                        className={`px-3 py-1 rounded hover:bg-gray-200 transition ${page === "Produtos" ? "bg-gray-200" : ""
-                            }`}
-                        onClick={() => setPage("Produtos")}
-                    >
-                        Produtos
-                    </button>
-
-                    <button
-                        className={`px-3 py-1 rounded hover:bg-gray-200 transition ${page === "Pedidos" ? "bg-gray-200" : ""
-                            }`}
-                        onClick={() => setPage("Pedidos")}
-                    >
-                        Pedidos
-                    </button>
-                </nav>
-
-                <div className="flex flex-col md:flex-row gap-4 flex-1">
-                    <main className="flex-1 min-w-0">
-                        {page === "Produtos" && <CatalogPage />}
-                        {page === "Pedidos" && <OrdersPage />}
-                    </main>
-
-                    <aside className="w-full md:w-80 md:shrink-0">
-                        <CartSidebar />
-                    </aside>
-                </div>
-            </div>
+            <DashboardLayout page={page} setPage={setPage}>
+                {page === "Dashboard" && <DashboardPage />}
+                {page === "Produtos" && <CatalogPage />}
+                {page === "Pedidos" && <OrdersPage />}
+            </DashboardLayout>
         </CartProvider>
     );
 }
