@@ -21,7 +21,7 @@ Este é um projeto de teste feito com **React**, **TypeScript**, **TailwindCSS**
 1. Clone o projeto ou extraia o zip:
 
 ```bash
-git clone https://github.com/RafaelJP13/arturia
+git clone https://github.com/RafaelJP13/shopping-cart
 cd arturia
 docker compose up --build
 ```
