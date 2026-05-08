@@ -2,9 +2,10 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { PrismaService } from '../prisma/prisma.service';
 import { ValidationPipe } from '@nestjs/common';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
+(async () => {
 
-async function bootstrap() {
   try {
     console.clear();
 
@@ -13,11 +14,28 @@ async function bootstrap() {
     // BACKEND
     const app = await NestFactory.create(AppModule);
 
+    // GLOBAL VALIDATION
     app.useGlobalPipes(
       new ValidationPipe({
         whitelist: true,
+        transform: true,
       }),
     );
+
+    // ----------------------------
+    // SWAGGER CONFIG
+    // ----------------------------
+    const config = new DocumentBuilder()
+      .setTitle('Compre Mais API')
+      .setDescription('API documentation for authentication, users and products')
+      .setVersion('1.0')
+      .addBearerAuth()
+      .build();
+
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('docs', app, document);
+
+    console.log('📘 Swagger: http://localhost:3000/docs\n');
 
     // PRISMA
     const prisma = app.get(PrismaService);
@@ -25,7 +43,6 @@ async function bootstrap() {
     // DATABASE
     try {
       await prisma.$connect();
-
       console.log('✅ Database: CONNECTED');
     } catch (error) {
       console.log('❌ Database: FAILED');
@@ -39,9 +56,8 @@ async function bootstrap() {
     console.log(`✅ Backend API: ONLINE`);
     console.log(`🌐 http://localhost:${port}\n`);
 
-    // FRONTEND
-    console.log('✅ Frontend: RUNNING');
-    console.log('💻 http://localhost:3001\n');
+    // FRONTEND (just info log, not backend responsibility)
+    console.log('💻 Frontend should run separately (e.g. http://localhost:5173)\n');
 
     console.log('🎉 Application started successfully');
 
@@ -49,6 +65,4 @@ async function bootstrap() {
     console.error('\n❌ Failed to start application');
     console.error(error);
   }
-}
-
-bootstrap();
+})()
