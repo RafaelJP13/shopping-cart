@@ -12,28 +12,27 @@ export default function App() {
             <div className="min-h-screen bg-neutral-100 p-4 flex flex-col">
                 <nav className="flex gap-2 mb-4 text-lg font-medium bg-white p-2 rounded shadow-sm cursor-pointer">
                     <button
-                        className={`px-3 py-1 rounded hover:bg-gray-200 transition ${page === "Produtos" ? "bg-gray-200" : ""
-                            }`}
+                        className={`px-3 py-1 rounded hover:bg-gray-200 transition ${page === "Produtos" ? "bg-gray-200" : ""}`}
                         onClick={() => setPage("Produtos")}
                     >
                         Produtos
                     </button>
                     <button
-                        className={`px-3 py-1 rounded hover:bg-gray-200 transition cursor-pointer ${page === "Pedidos" ? "bg-gray-200" : ""
-                            }`}
+                        className={`px-3 py-1 rounded hover:bg-gray-200 transition cursor-pointer ${page === "Pedidos" ? "bg-gray-200" : ""}`}
                         onClick={() => setPage("Pedidos")}
                     >
                         Pedidos
                     </button>
                 </nav>
 
-                <div className="flex gap-4 flex-1">
-                    <main className="flex-1">
+                {/* Stack vertically on mobile, side-by-side on md+ */}
+                <div className="flex flex-col md:flex-row gap-4 flex-1">
+                    <main className="flex-1 min-w-0">
                         {page === "Produtos" && <CatalogPage />}
                         {page === "Pedidos" && <OrdersPage />}
                     </main>
 
-                    <aside className="w-80">
+                    <aside className="w-full md:w-80 md:shrink-0">
                         <CartSidebar />
                     </aside>
                 </div>

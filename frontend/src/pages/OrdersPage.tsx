@@ -20,8 +20,9 @@ const OrdersPage: React.FC = () => {
         <div className="p-4 bg-white rounded shadow flex flex-col">
             <h2 className="text-xl font-bold mb-4">Pedidos</h2>
 
-            <div className="grid grid-cols-12 gap-6">
-                <div className="col-span-5 border-r pr-4 max-h-[400px] overflow-y-auto">
+            {/* On mobile: stacks vertically. On md+: side by side */}
+            <div className="flex flex-col md:grid md:grid-cols-12 gap-6">
+                <div className="md:col-span-5 md:border-r md:pr-4 max-h-[400px] overflow-y-auto">
                     <h3 className="font-semibold mb-2">Pedidos Salvos</h3>
                     {orders.map((o) => (
                         <div
@@ -36,7 +37,7 @@ const OrdersPage: React.FC = () => {
                     ))}
                 </div>
 
-                <div className="col-span-7">
+                <div className="md:col-span-7">
                     {selected && (
                         <>
                             <h3 className="font-semibold mb-2">Pedido #{selected}</h3>
