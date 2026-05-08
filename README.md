@@ -1,4 +1,4 @@
-# Compre Mais 🛒
+# CompreFlow 🛒
 
 A modern fullstack e-commerce platform built with Next.js and NestJS.
 
