@@ -1,31 +1,159 @@
-# Shopping Cart
+# Compre Mais 🛒
 
-Este é um projeto feito com **React**, **TypeScript**, **TailwindCSS** e armazenamento de pedidos no **IndexedDB**. Ele inclui catálogo de produtos, carrinho de compras e histórico de pedidos.
-
----
-
-## Pré-requisitos
-
-### Para rodar com Docker
-- [Docker](https://www.docker.com/get-started)
-- [Docker Compose](https://docs.docker.com/compose/install/)
-
-### Para rodar localmente
-- [Node.js v20+](https://nodejs.org/)
-- npm (vem com Node.js)
+A modern fullstack e-commerce platform built with Next.js and NestJS.
 
 ---
 
-## Rodando com Docker (recomendado)
+# 🚀 About the Project
 
-1. Clone o projeto ou extraia o zip:
+Compre Mais is a fullstack e-commerce application focused on scalability, organization, and clean architecture.
+
+The project aims to simulate a modern online shopping experience with:
+
+- Product browsing
+- Shopping cart
+- Authentication
+- REST API integration
+- Modular backend architecture
+
+This repository contains both frontend and backend applications.
+
+---
+
+# 🧰 Technologies
+
+## Frontend
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+## Backend
+
+- NestJS
+- Node.js
+- TypeScript
+
+## Tools & Concepts
+
+- REST API
+- ESLint
+- Prettier
+- Modular Architecture
+- Git & GitHub
+
+---
+
+# 📁 Project Structure
 
 ```bash
-git clone https://github.com/RafaelJP13/shopping-cart
-cd arturia
-docker compose up --build
+compre-mais/
+├── backend/       # NestJS API
+├── frontend/      # Next.js application
 ```
 
-💻 Abra o site por aqui: http://localhost:5173
+---
 
-💡 O backend de pedidos está usando IndexedDB no navegador, então não é necessário configurar servidor adicional.
+# ⚙️ Getting Started
+
+## Clone the repository
+
+```bash
+git clone https://github.com/RafaelJP13/compre-mais.git
+```
+
+---
+
+# 🔧 Backend Setup
+
+## Navigate to backend folder
+
+```bash
+cd backend
+```
+
+## Install dependencies
+
+```bash
+npm install
+```
+
+## Run development server
+
+```bash
+npm run start:dev
+```
+
+Backend will run on:
+
+```bash
+http://localhost:3000
+```
+
+---
+
+# 💻 Frontend Setup
+
+## Navigate to frontend folder
+
+```bash
+cd frontend
+```
+
+## Install dependencies
+
+```bash
+npm install
+```
+
+## Run development server
+
+```bash
+npm run dev
+```
+
+Frontend will run on:
+
+```bash
+http://localhost:3001
+```
+
+---
+
+# 📌 Features
+
+- [x] NestJS backend initialization
+- [x] REST API structure
+- [x] Frontend with Next.js
+- [ ] Authentication
+- [ ] Product listing
+- [ ] Shopping cart
+- [ ] Checkout flow
+- [ ] Admin dashboard
+
+---
+
+# 🧠 Learning Goals
+
+This project was created to improve skills in:
+
+- Fullstack development
+- Backend architecture with NestJS
+- API design
+- Scalable project organization
+- Modern frontend development with Next.js
+
+---
+
+# 📷 Future Improvements
+
+- Docker support
+- CI/CD pipeline
+- Unit and integration tests
+- AWS deployment
+- Payment gateway integration
+
+# 📄 License
+
+This project is licensed under the MIT License.
