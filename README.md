@@ -51,6 +51,7 @@ This repository contains both frontend and backend applications.
 compre-mais/
 ├── backend/       # NestJS API
 ├── frontend/      # Next.js application
+├── infra/         # Infra
 ```
 
 ---
