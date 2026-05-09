@@ -26,8 +26,8 @@ export class SeedService {
         await this.prisma.user.createMany({
             data: [
                 {
-                    name: 'Rafael Santos Fernandes',
-                    email: 'rafael@test.com',
+                    name: 'User Test',
+                    email: 'user@test.com',
                     password: '123456',
                 },
             ],

@@ -78,6 +78,18 @@ JWT_EXPIRES_IN=""
 
 ---
 
+## 👤 Default User (Seed)
+
+After running the seed, a default user will be created for testing purposes:
+
+```json
+{
+  "name": "User Test",
+  "email": "user@test.com",
+  "password": "123456"
+}
+
+---
 
 # 🔧 Setup
 
