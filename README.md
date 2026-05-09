@@ -115,11 +115,12 @@ http://localhost:5173
 - [x] NestJS backend initialization
 - [x] REST API structure
 - [x] Frontend with Next.js
+- [x] Login & Logout
+- [x] Admin Dashboard
 - [ ] Authentication
 - [ ] Product listing
 - [ ] Shopping cart
 - [ ] Checkout flow
-- [ ] Admin dashboard
 
 ---
 
