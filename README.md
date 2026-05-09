@@ -1,6 +1,6 @@
 # CompreFlow 🛒
 
-A modern fullstack e-commerce platform built with Next.js and NestJS.
+A modern fullstack Pricing and Salesforce platform built with Next.js and NestJS.
 
 ---
 
