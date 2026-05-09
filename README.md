@@ -118,6 +118,7 @@ http://localhost:5173
 - [x] Login & Logout
 - [x] Admin Dashboard
 - [x] Authentication
+- [ ] Add GraphQL
 - [ ] Internal users crud
 - [ ] Company crud
 - [ ] Employers Company crud 
