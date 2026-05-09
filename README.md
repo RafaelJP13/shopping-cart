@@ -80,7 +80,7 @@ JWT_EXPIRES_IN=""
 
 ## 👤 Default User (Seed)
 
-After running the seed, a default user will be created for testing purposes:
+After running the docker compose, a default user will be created for testing purposes:
 
 ```json
 {
