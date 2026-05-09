@@ -66,7 +66,8 @@ git clone https://github.com/RafaelJP13/compre-mais.git
 
 ---
 
-## 🔐 Environment Variables (Backend)
+
+# 🔧 Setup
 
 The backend requires a `.env` file inside the `/backend` directory.
 
@@ -92,9 +93,6 @@ After running the docker compose, a default user will be created for testing pur
 
 ---
 
-# 🔧 Setup
-
-## Navigate to folder project
 
 ```bash
 docker compose up --build
@@ -117,11 +115,12 @@ http://localhost:5173
 - [x] NestJS backend initialization
 - [x] REST API structure
 - [x] Frontend with Next.js
+- [x] Login & Logout
+- [x] Admin Dashboard
 - [ ] Authentication
 - [ ] Product listing
 - [ ] Shopping cart
 - [ ] Checkout flow
-- [ ] Admin dashboard
 
 ---
 
