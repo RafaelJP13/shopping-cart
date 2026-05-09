@@ -65,6 +65,19 @@ git clone https://github.com/RafaelJP13/compre-mais.git
 
 ---
 
+## 🔐 Environment Variables (Backend)
+
+The backend requires a `.env` file inside the `/backend` directory.
+
+```bash
+DATABASE_URL="postgresql://<teste>:<teste>@db:5432/shopping_cart?schema=public"
+JWT_SECRET=""
+JWT_EXPIRES_IN=""
+```
+
+---
+
+
 # 🔧 Setup
 
 ## Navigate to folder project
