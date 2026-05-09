@@ -1,10 +1,6 @@
 import { useState } from "react";
-
-import { CatalogPage } from "./pages/CatalogPage";
-import OrdersPage from "./pages/OrdersPage";
 import LoginPage from "./pages/LoginPage";
 import { DashboardPage } from "./pages/DashboardPage";
-
 import { CartProvider } from "./context/CartContext";
 import { DashboardLayout } from "./layouts/DashboardLayout";
 
@@ -21,8 +17,6 @@ export default function App() {
         <CartProvider>
             <DashboardLayout page={page} setPage={setPage}>
                 {page === "Dashboard" && <DashboardPage />}
-                {page === "Produtos" && <CatalogPage />}
-                {page === "Pedidos" && <OrdersPage />}
             </DashboardLayout>
         </CartProvider>
     );
