@@ -13,7 +13,7 @@ The project aims to simulate a modern online shopping experience with:
 - Product browsing
 - Shopping cart
 - Authentication
-- REST API integration
+- GraphQL integration
 - Modular backend architecture
 
 This repository contains both frontend and backend applications.
