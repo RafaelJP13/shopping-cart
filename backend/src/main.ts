@@ -9,7 +9,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
   try {
     console.clear();
 
-    console.log('🚀 Starting Compre Mais...\n');
+    console.log('🚀 Starting CompreFlow...\n');
 
     // BACKEND
     const app = await NestFactory.create(AppModule);
@@ -32,7 +32,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
     // SWAGGER CONFIG
     // ----------------------------
     const config = new DocumentBuilder()
-      .setTitle('Compre Mais API')
+      .setTitle('CompreFlow API')
       .setDescription('API documentation for authentication, users and products')
       .setVersion('1.0')
       .addBearerAuth()

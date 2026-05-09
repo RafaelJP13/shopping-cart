@@ -55,7 +55,7 @@ export function DashboardLayout({ page, setPage, children }: Props) {
 
             {/* MOBILE TOP BAR */}
             <div className="md:hidden fixed top-0 left-0 right-0 bg-white border-b flex items-center justify-between p-3 z-50">
-                <h1 className="font-bold">Compre Mais</h1>
+                <h1 className="font-bold">CompreFlow</h1>
                 <button onClick={() => setOpen(true)}>
                     <Menu />
                 </button>
@@ -72,7 +72,7 @@ export function DashboardLayout({ page, setPage, children }: Props) {
 
                 {/* HEADER */}
                 <div className="p-4 border-b">
-                    <h1 className="text-xl font-bold">Compre Mais</h1>
+                    <h1 className="text-xl font-bold">CompreFlow</h1>
                 </div>
 
                 {/* NAV */}

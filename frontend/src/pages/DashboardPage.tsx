@@ -9,7 +9,7 @@ export function DashboardPage() {
             <div className="bg-white p-4 rounded shadow-sm">
                 <h1 className="text-2xl font-bold">Dashboard</h1>
                 <p className="text-gray-500 text-sm">
-                    Overview of your Compre Mais activity
+                    Visão geral das métricas e desempenho do sistema
                 </p>
             </div>
 
