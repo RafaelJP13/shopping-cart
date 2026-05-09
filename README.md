@@ -13,7 +13,7 @@ The project aims to simulate a modern online shopping experience with:
 - Product browsing
 - Shopping cart
 - Authentication
-- REST API integration
+- GraphQL integration
 - Modular backend architecture
 
 This repository contains both frontend and backend applications.
@@ -117,10 +117,11 @@ http://localhost:5173
 - [x] Frontend with Next.js
 - [x] Login & Logout
 - [x] Admin Dashboard
-- [ ] Authentication
-- [ ] Product listing
-- [ ] Shopping cart
-- [ ] Checkout flow
+- [x] Authentication
+- [ ] Internal users crud
+- [ ] Company crud
+- [ ] Employers Company crud 
+      
 
 ---
 
