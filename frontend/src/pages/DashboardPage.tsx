@@ -1,9 +1,6 @@
-import MyChart from "../components/charts/MyChart";
-
 export function DashboardPage() {
     return (
         <div className="space-y-4">
-            <MyChart />
 
             {/* Header */}
             <div className="bg-white p-4 rounded shadow-sm">

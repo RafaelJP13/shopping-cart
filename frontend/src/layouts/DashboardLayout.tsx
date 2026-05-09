@@ -8,7 +8,7 @@ import {
     Menu,
 } from "lucide-react";
 
-type Page = "Dashboard" | "Produtos" | "Pedidos" | "Login";
+type Page = "Dashboard" | "Usuários" | "Pedidos" | "Login";
 
 interface Props {
     page: Page;
@@ -92,7 +92,7 @@ export function DashboardLayout({ page, setPage, children }: Props) {
                 {/* NAV */}
                 <div className="flex flex-col gap-2 p-3 flex-1 overflow-y-auto">
                     {navItem("Dashboard", <LayoutDashboard size={18} />)}
-                    {navItem("Produtos", <ShoppingBag size={18} />)}
+                    {navItem("Usuários", <User size={18} />)}
                     {navItem("Pedidos", <ClipboardList size={18} />)}
                 </div>
 

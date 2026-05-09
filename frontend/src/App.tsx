@@ -3,8 +3,9 @@ import LoginPage from "./pages/LoginPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { CartProvider } from "./context/CartContext";
 import { DashboardLayout } from "./layouts/DashboardLayout";
+import UsersPage from "./pages/internal/UsersPage";
 
-type Page = "Login" | "Dashboard" | "Produtos" | "Pedidos";
+type Page = "Login" | "Dashboard" | "Usuários" | "Pedidos";
 
 export default function App() {
     const [page, setPage] = useState<Page>("Login");
@@ -17,6 +18,7 @@ export default function App() {
         <CartProvider>
             <DashboardLayout page={page} setPage={setPage}>
                 {page === "Dashboard" && <DashboardPage />}
+                {page === "Usuários" && <UsersPage />}
             </DashboardLayout>
         </CartProvider>
     );
