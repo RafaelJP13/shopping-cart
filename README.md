@@ -118,6 +118,9 @@ http://localhost:5173
 - [x] Login & Logout
 - [x] Admin Dashboard
 - [x] Authentication
+- [ ] Internal users crud
+- [ ] Company crud
+- [ ] Employers Company crud 
       
 
 ---
