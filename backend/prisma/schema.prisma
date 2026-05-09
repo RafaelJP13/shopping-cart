@@ -7,17 +7,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  password  String
-  role      Role     @default(USER)
+model Company {
+  id String @id @default(uuid())
+
+  name String
+  slug String @unique
+  cnpj String @unique
+
+  users User[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([slug])
+  @@index([cnpj])
+}
+
+model User {
+  id String @id @default(uuid())
+
+  name     String
+  email    String @unique
+  password String
+
+  role Role @default(EMPLOYEE)
+
+  companyId String?
+  company   Company? @relation(fields: [companyId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([companyId])
+  @@index([role])
 }
 
 enum Role {
-  USER
-  ADMIN
+  OWNER
+  COMPANY_ADMIN
+  EMPLOYEE
 }
