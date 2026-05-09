@@ -88,6 +88,7 @@ After running the seed, a default user will be created for testing purposes:
   "email": "user@test.com",
   "password": "123456"
 }
+```
 
 ---
 
