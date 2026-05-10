@@ -6,9 +6,9 @@ A modern fullstack Pricing and Salesforce platform built with Next.js and NestJS
 
 # 🚀 About the Project
 
-Compre Mais is a fullstack e-commerce application focused on scalability, organization, and clean architecture.
+Compre Mais is a Pricing and Salesforce application focused on scalability, organization, and clean architecture.
 
-The project aims to simulate a modern online shopping experience with:
+The project aims to simulate a modern Pricing and Salesforce experience with:
 
 - Product browsing
 - Shopping cart
