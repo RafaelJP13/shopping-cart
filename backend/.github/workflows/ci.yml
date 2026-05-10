@@ -15,47 +15,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: backend
-
-    services:
-      postgres:
-        image: postgres:16
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: shopping_cart
-        ports:
-          - 5432:5432
-
     env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/shopping_cart
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/shopping_cart
       JWT_SECRET: test-secret
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Generate Prisma Client
-        run: npx prisma generate
-
-      - name: Run migrations
-        run: npx prisma migrate deploy
-
-      - name: Run lint
-        run: npm run lint
+      - name: Build containers
+        run: docker compose -f docker-compose.test.yml build
 
       - name: Run tests
-        run: npm run test
-
-      - name: Build project
-        run: npm run build
+        run: docker compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from backend
