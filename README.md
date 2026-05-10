@@ -24,7 +24,6 @@ This repository contains both frontend and backend applications.
 
 ## Frontend
 
-- Next.js
 - React
 - TypeScript
 - Tailwind CSS
@@ -37,7 +36,7 @@ This repository contains both frontend and backend applications.
 
 ## Tools & Concepts
 
-- REST API
+- GraphQL
 - ESLint
 - Prettier
 - Modular Architecture
@@ -115,7 +114,7 @@ http://localhost:5173
 # 📌 Features
 
 - [x] NestJS backend initialization
-- [x] Frontend with Next.js
+- [x] Frontend with React.js
 - [x] Login & Logout
 - [x] Admin Dashboard
 - [x] Authentication
