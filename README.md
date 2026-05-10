@@ -120,6 +120,7 @@ http://localhost:5173
 - [x] Admin Dashboard
 - [x] Authentication
 - [x] Unit Tests
+- [x] CI & CD
 - [ ] Company Dashboard
 - [ ] Add GraphQL
 - [ ] Internal users crud
