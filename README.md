@@ -115,11 +115,12 @@ http://localhost:5173
 # 📌 Features
 
 - [x] NestJS backend initialization
-- [x] REST API structure
 - [x] Frontend with Next.js
 - [x] Login & Logout
 - [x] Admin Dashboard
 - [x] Authentication
+- [x] Unit Tests
+- [ ] Company Dashboard
 - [ ] Add GraphQL
 - [ ] Internal users crud
 - [ ] Company crud
