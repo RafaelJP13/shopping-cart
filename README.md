@@ -121,7 +121,7 @@ http://localhost:5173
 - [x] Authentication
 - [x] Unit Tests
 - [x] CI & CD
-- [ ] JWT with HttpOnly cookies
+- [ ] JWT in HttpOnly cookies
 - [ ] Company Dashboard
 - [ ] Add GraphQL
 - [ ] Internal users crud
