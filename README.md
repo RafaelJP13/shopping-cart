@@ -77,6 +77,12 @@ JWT_SECRET=""
 JWT_EXPIRES_IN=""
 ```
 
+After that runs the command
+
+```bash
+docker compose up --build
+```
+
 ---
 
 ## 👤 Default User (Seed)
@@ -85,18 +91,14 @@ After running the docker compose, a default user will be created for testing pur
 
 ```json
 {
-  "name": "User Test",
-  "email": "user@test.com",
+  "name": "Platform Owner",
+  "email": "owner@test.com",
   "password": "123456"
 }
 ```
 
 ---
 
-
-```bash
-docker compose up --build
-```
 Backend will run on:
 
 ```bash
