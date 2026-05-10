@@ -1,6 +1,6 @@
 # CompreFlow 🛒
 
-A modern Retail Execution + Pricing Intelligence + Sales Intelligence platform built with React.js and NestJS.
+A modern Retail Execution + Pricing Intelligence + Sales Intelligence platform built with React.js, React Native and NestJS.
 
 ---
 
