@@ -139,7 +139,7 @@ This project was created to improve skills in:
 - Backend architecture with NestJS
 - API design
 - Scalable project organization
-- Modern frontend development with Next.js
+- Modern frontend development with React.js
 
 ---
 
@@ -153,4 +153,4 @@ This project was created to improve skills in:
 
 # 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the GNU General Public License v3.0.
