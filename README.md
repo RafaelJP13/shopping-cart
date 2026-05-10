@@ -123,7 +123,7 @@ http://localhost:5173
 - [ ] REST API for easy stuffs
 - [ ] JWT in HttpOnly cookies
 - [ ] Company Dashboard
-- [ ] GraphQL dashboards, aggregations, complex frontend querying
+- [ ] GraphQL for dashboards, aggregations, complex frontend querying
 - [ ] Internal users crud
 - [ ] Company crud
 - [ ] Employers Company crud 
