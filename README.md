@@ -139,7 +139,7 @@ This project was created to improve skills in:
 - Backend architecture with NestJS
 - API design
 - Scalable project organization
-- Modern frontend development with Next.js
+- Modern frontend development with React.js
 
 ---
 
