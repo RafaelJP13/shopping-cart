@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { Role } from '@prisma/client';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class SeedService {
@@ -63,13 +64,15 @@ export class SeedService {
             },
         });
 
+        const hashedPassword = await bcrypt.hash('123456', 10);
+
         await this.prisma.user.createMany({
             data: [
                 // PLATFORM OWNER
                 {
                     name: 'Platform Owner',
                     email: 'owner@test.com',
-                    password: '123456',
+                    password: hashedPassword,
                     role: Role.OWNER,
                 },
 
@@ -77,7 +80,7 @@ export class SeedService {
                 {
                     name: 'Nike Admin',
                     email: 'admin@nike.com',
-                    password: '123456',
+                    password: hashedPassword,
                     role: Role.COMPANY_ADMIN,
                     companyId: nike?.id,
                 },
@@ -86,7 +89,7 @@ export class SeedService {
                 {
                     name: 'Nike Employee',
                     email: 'employee@nike.com',
-                    password: '123456',
+                    password: hashedPassword,
                     role: Role.EMPLOYEE,
                     companyId: nike?.id,
                 },
@@ -95,7 +98,7 @@ export class SeedService {
                 {
                     name: 'Coca-Cola Employee',
                     email: 'employee@coca.com',
-                    password: '123456',
+                    password: hashedPassword,
                     role: Role.EMPLOYEE,
                     companyId: cocaCola?.id,
                 },
