@@ -120,9 +120,10 @@ http://localhost:5173
 - [x] Authentication
 - [x] Unit Tests
 - [x] CI & CD
+- [ ] REST API for easy stuffs
 - [ ] JWT in HttpOnly cookies
 - [ ] Company Dashboard
-- [ ] Add GraphQL
+- [ ] GraphQL dashboards, aggregations, complex frontend querying
 - [ ] Internal users crud
 - [ ] Company crud
 - [ ] Employers Company crud 
