@@ -120,6 +120,7 @@ http://localhost:5173
 - [x] Authentication
 - [x] Unit Tests
 - [x] CI & CD
+- [ ] Permission-Based Access Control (PBAC) 
 - [ ] REST API for easy stuffs
 - [ ] JWT in HttpOnly cookies
 - [ ] Company Dashboard
@@ -140,6 +141,12 @@ This project was created to improve skills in:
 - API design
 - Scalable project organization
 - Modern frontend development with React.js
+
+---
+
+## 🔗 Learn More
+
+👉 [Visit Compre Flow](https://institucional-compre-flow.vercel.app/)
 
 ---
 
