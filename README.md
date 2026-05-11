@@ -57,6 +57,7 @@ compre-mais/
 ├── backend/       # NestJS API
 ├── frontend/      # Next.js application
 ├── infra/         # Infra
+├── mobile/        # Mobile
 ```
 
 ---
