@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
     Search,
     ChevronLeft,
@@ -6,35 +6,51 @@ import {
 } from "lucide-react";
 
 type User = {
-    id: number;
+    id: string;
     name: string;
     email: string;
     role: string;
-    status: "Active" | "Inactive";
+    companyId: string | null;
+    createdAt: string;
+    updatedAt: string;
 };
-
-const mockUsers: User[] = Array.from({ length: 42 }, (_, i) => ({
-    id: i + 1,
-    name: `User ${i + 1}`,
-    email: `user${i + 1}@test.com`,
-    role: i % 2 === 0 ? "Admin" : "Customer",
-    status: i % 3 === 0 ? "Inactive" : "Active",
-}));
 
 const ITEMS_PER_PAGE = 8;
 
 export default function UsersPage() {
+    const [users, setUsers] = useState<User[]>([]);
+    const [loading, setLoading] = useState(true);
+
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
 
+    // FETCH USERS
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const res = await fetch("http://localhost:3000/users");
+                const data = await res.json();
+                setUsers(data);
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchUsers();
+    }, []);
+
+    // FILTER
     const filteredUsers = useMemo(() => {
-        return mockUsers.filter((user) =>
+        return users.filter((user) =>
             `${user.name} ${user.email} ${user.role}`
                 .toLowerCase()
                 .includes(search.toLowerCase())
         );
-    }, [search]);
+    }, [search, users]);
 
+    // PAGINATION
     const totalPages = Math.ceil(filteredUsers.length / ITEMS_PER_PAGE);
 
     const paginatedUsers = filteredUsers.slice(
@@ -47,8 +63,18 @@ export default function UsersPage() {
         setCurrentPage(1);
     };
 
+    // LOADING STATE
+    if (loading) {
+        return (
+            <div className="p-6 text-gray-500">
+                Loading users...
+            </div>
+        );
+    }
+
     return (
         <div className="p-6 w-full">
+
             {/* HEADER */}
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
                 <div>
@@ -91,15 +117,16 @@ export default function UsersPage() {
 
             {/* TABLE */}
             <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+
                 <div className="overflow-x-auto">
                     <table className="w-full min-w-[700px]">
+
                         <thead className="bg-gray-50 border-b">
                             <tr className="text-left text-sm text-gray-500">
                                 <th className="px-6 py-4 font-medium">ID</th>
                                 <th className="px-6 py-4 font-medium">Nome</th>
                                 <th className="px-6 py-4 font-medium">E-mail</th>
                                 <th className="px-6 py-4 font-medium">Função</th>
-                                <th className="px-6 py-4 font-medium">Status</th>
                             </tr>
                         </thead>
 
@@ -110,13 +137,11 @@ export default function UsersPage() {
                                     className="border-b last:border-0 hover:bg-gray-50 transition"
                                 >
                                     <td className="px-6 py-4 text-sm text-gray-700">
-                                        #{user.id}
+                                        #{user.id.slice(0, 6)}
                                     </td>
 
-                                    <td className="px-6 py-4">
-                                        <div className="font-medium text-gray-800">
-                                            {user.name}
-                                        </div>
+                                    <td className="px-6 py-4 font-medium text-gray-800">
+                                        {user.name}
                                     </td>
 
                                     <td className="px-6 py-4 text-sm text-gray-600">
@@ -124,20 +149,8 @@ export default function UsersPage() {
                                     </td>
 
                                     <td className="px-6 py-4 text-sm text-gray-700">
-                                        {user.role}
-                                    </td>
-
-                                    <td className="px-6 py-4">
-                                        <span
-                                            className={`
-                                                px-3 py-1 rounded-full text-xs font-medium
-                                                ${user.status === "Active"
-                                                    ? "bg-green-100 text-green-700"
-                                                    : "bg-red-100 text-red-700"
-                                                }
-                                            `}
-                                        >
-                                            {user.status}
+                                        <span className="px-3 py-1 rounded-full text-xs bg-gray-100 text-gray-700">
+                                            {user.role}
                                         </span>
                                     </td>
                                 </tr>
@@ -146,7 +159,7 @@ export default function UsersPage() {
                             {paginatedUsers.length === 0 && (
                                 <tr>
                                     <td
-                                        colSpan={5}
+                                        colSpan={4}
                                         className="text-center py-10 text-gray-500"
                                     >
                                         Nenhum usuário encontrado
@@ -154,11 +167,13 @@ export default function UsersPage() {
                                 </tr>
                             )}
                         </tbody>
+
                     </table>
                 </div>
 
                 {/* PAGINATION */}
                 <div className="flex items-center justify-between px-6 py-4 border-t bg-gray-50">
+
                     <p className="text-sm text-gray-500">
                         Showing{" "}
                         <span className="font-medium">
@@ -168,10 +183,11 @@ export default function UsersPage() {
                         <span className="font-medium">
                             {filteredUsers.length}
                         </span>{" "}
-                        Usuários
+                        users
                     </p>
 
                     <div className="flex items-center gap-2">
+
                         <button
                             onClick={() =>
                                 setCurrentPage((prev) =>
@@ -192,7 +208,7 @@ export default function UsersPage() {
                         </button>
 
                         <div className="text-sm font-medium px-2">
-                            {currentPage} / {totalPages}
+                            {currentPage} / {totalPages || 1}
                         </div>
 
                         <button
@@ -213,8 +229,10 @@ export default function UsersPage() {
                         >
                             <ChevronRight size={18} />
                         </button>
+
                     </div>
                 </div>
+
             </div>
         </div>
     );
