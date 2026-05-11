@@ -66,7 +66,7 @@ compre-mais/
 ## Clone the repository
 
 ```bash
-git clone https://github.com/RafaelJP13/compre-mais.git
+git clone https://github.com/RafaelJP13/compre-flow.git
 ```
 
 ---
