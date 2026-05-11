@@ -22,7 +22,7 @@ The project aims to simulate a modern Pricing and Salesforce experience with:
 - Swagger Documentation API
 
 
-This repository contains both frontend and backend applications.
+This repository contains both frontend( Web | Mobile) and backend applications.
 
 ---
 
