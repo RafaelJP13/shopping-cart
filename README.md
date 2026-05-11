@@ -127,6 +127,7 @@ http://localhost:5173
 - [x] Authentication
 - [x] Unit Tests
 - [x] CI & CD
+- [ ] Add React Router
 - [ ] Permission-Based Access Control (PBAC) 
 - [ ] REST API for easy stuffs
 - [ ] JWT in HttpOnly cookies
