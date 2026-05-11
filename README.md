@@ -10,11 +10,17 @@ Compre Mais is a Pricing and Salesforce application focused on scalability, orga
 
 The project aims to simulate a modern Pricing and Salesforce experience with:
 
-- Product browsing
-- Shopping cart
+- Scalability
 - Authentication
+- REST API Integration
 - GraphQL integration
 - Modular backend architecture
+- Modern frontend
+- Unit Test
+- Integration tests
+- End-to-end (E2E) tests
+- Swagger Documentation API
+
 
 This repository contains both frontend and backend applications.
 
