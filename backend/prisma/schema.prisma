@@ -42,6 +42,31 @@ model User {
   @@index([role])
 }
 
+model AuditLog {
+  id String @id @default(cuid())
+
+  userId    String?
+  userEmail String?
+  companyId String?
+  action    String // e.g. "USER_CREATED", "ORDER_UPDATED"
+  entity    String // e.g. "User", "Order", "Product"
+  entityId  String?
+  metadata  Json? // flexible payload (before/after, extra info)
+  ip        String?
+  userAgent String?
+  requestId String?
+  status    String // "SUCCESS" | "FAILURE"
+  error     String?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([companyId])
+  @@index([entity, entityId])
+  @@index([action])
+  @@index([createdAt])
+}
+
 enum Role {
   OWNER
   COMPANY_ADMIN
