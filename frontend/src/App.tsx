@@ -4,10 +4,12 @@ import LoginPage from "./pages/LoginPage";
 
 import { DashboardPage } from "./pages/DashboardPage";
 
-import CompaniesPage from "./pages/internal/company/CompanyPage";
+import CompanyPage from "./pages/internal/company/CompanyPage";
 import CreateCompanyPage from "./pages/internal/company/CreateCompanyPage";
 
 import { DashboardLayout } from "./layouts/DashboardLayout";
+
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 export default function App() {
     return (
@@ -19,8 +21,14 @@ export default function App() {
                 element={<LoginPage />}
             />
 
-            {/* PRIVATE LAYOUT */}
-            <Route element={<DashboardLayout />}>
+            {/* PROTECTED */}
+            <Route
+                element={
+                    <ProtectedRoute>
+                        <DashboardLayout />
+                    </ProtectedRoute>
+                }
+            >
 
                 <Route
                     path="/dashboard"
@@ -29,13 +37,15 @@ export default function App() {
 
                 <Route
                     path="/companies"
-                    element={<CompaniesPage />}
+                    element={<CompanyPage />}
                 />
 
                 <Route
                     path="/companies/create"
                     element={<CreateCompanyPage />}
                 />
+
+
 
             </Route>
 
