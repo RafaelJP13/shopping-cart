@@ -10,16 +10,24 @@ datasource db {
 model Company {
   id String @id @default(uuid())
 
-  name String
-  slug String @unique
-  cnpj String @unique
+  adminName     String
+  adminEmail    String
+  representante String
+  fantasyName   String
+  legalName     String
+  cnpj          String @unique
+  cnpj_status   String // "VALID", "INVALID"
+  phone         String
+  cep           String
+  state         String
+  city          String
+  address       String
 
   users User[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([slug])
   @@index([cnpj])
 }
 

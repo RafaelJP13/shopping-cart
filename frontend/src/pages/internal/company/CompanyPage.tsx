@@ -8,20 +8,35 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-type User = {
+type Company = {
     id: string;
-    name: string;
-    email: string;
-    role: string;
-    companyId: string | null;
+
+    adminName: string;
+    adminEmail: string;
+    representante: string;
+
+    fantasyName: string;
+    legalName: string;
+
+    cnpj: string;
+    cnpj_status: string;
+
+    phone: string;
+
+    cep: string;
+    state: string;
+    city: string;
+
+    address: string;
+
     createdAt: string;
     updatedAt: string;
 };
 
 const ITEMS_PER_PAGE = 8;
 
-export default function UsersPage() {
-    const [users, setUsers] = useState<User[]>([]);
+export default function CompaniesPage() {
+    const [companies, setCompanies] = useState<Company[]>([]);
     const [loading, setLoading] = useState(true);
 
     const [search, setSearch] = useState("");
@@ -30,32 +45,32 @@ export default function UsersPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchUsers = async () => {
+        const fetchCompanies = async () => {
             try {
                 const res = await fetch("http://localhost:3000/companies");
                 const data = await res.json();
-                setUsers(data);
+                setCompanies(data);
             } catch (error) {
-                console.error("Error fetching users:", error);
+                console.error("Error fetching companies:", error);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchUsers();
+        fetchCompanies();
     }, []);
 
-    const filteredUsers = useMemo(() => {
-        return users.filter((user) =>
-            `${user.name} ${user.email} ${user.role}`
+    const filteredCompanies = useMemo(() => {
+        return companies.filter((c) =>
+            `${c.fantasyName} ${c.adminName} ${c.cnpj} ${c.city} ${c.state} ${c.cnpj_status}`
                 .toLowerCase()
                 .includes(search.toLowerCase())
         );
-    }, [search, users]);
+    }, [search, companies]);
 
-    const totalPages = Math.ceil(filteredUsers.length / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(filteredCompanies.length / ITEMS_PER_PAGE);
 
-    const paginatedUsers = filteredUsers.slice(
+    const paginatedCompanies = filteredCompanies.slice(
         (currentPage - 1) * ITEMS_PER_PAGE,
         currentPage * ITEMS_PER_PAGE
     );
@@ -63,7 +78,7 @@ export default function UsersPage() {
     if (loading) {
         return (
             <div className="p-6 text-gray-500">
-                Loading users...
+                Loading companies...
             </div>
         );
     }
@@ -85,7 +100,6 @@ export default function UsersPage() {
 
                 <div className="flex flex-col md:flex-row md:items-center gap-3 w-full md:w-auto">
 
-                    {/* ADD COMPANY BUTTON */}
                     <button
                         onClick={() => navigate("/companies/create")}
                         className="
@@ -96,16 +110,13 @@ export default function UsersPage() {
                             text-sm
                             hover:bg-gray-800
                             transition
-                            whitespace-nowrap
                             flex items-center gap-2
-                            cursor-pointer
                         "
                     >
                         <Plus size={16} />
                         Adicionar Empresa
                     </button>
 
-                    {/* SEARCH */}
                     <div className="relative w-full md:w-80">
                         <Search
                             size={18}
@@ -114,22 +125,22 @@ export default function UsersPage() {
 
                         <input
                             type="text"
-                            placeholder="Buscar Empresas..."
+                            placeholder="Buscar empresas..."
                             value={search}
-                            onChange={(e) => handleSearch(e.target.value)}
+                            onChange={(e) => setSearch(e.target.value)}
                             className="
-                    w-full
-                    pl-10
-                    pr-4
-                    py-2.5
-                    rounded-xl
-                    border
-                    border-gray-200
-                    bg-white
-                    outline-none
-                    focus:ring-2
-                    focus:ring-black/10
-                "
+                                w-full
+                                pl-10
+                                pr-4
+                                py-2.5
+                                rounded-xl
+                                border
+                                border-gray-200
+                                bg-white
+                                outline-none
+                                focus:ring-2
+                                focus:ring-black/10
+                            "
                         />
                     </div>
 
@@ -139,119 +150,124 @@ export default function UsersPage() {
             {/* TABLE */}
             <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
                 <div className="overflow-x-auto">
-                    <table className="w-full min-w-[700px]">
+                    <table className="w-full min-w-[1100px]">
 
                         <thead className="bg-[#ffac2e]/10 border-b">
                             <tr className="text-left text-sm text-gray-600">
-                                <th className="px-6 py-4 font-medium">ID</th>
-                                <th className="px-6 py-4 font-medium">Nome</th>
-                                <th className="px-6 py-4 font-medium">Ações</th>
+                                <th className="px-6 py-4">Empresa</th>
+                                <th className="px-6 py-4">Admin</th>
+                                <th className="px-6 py-4">CNPJ</th>
+                                <th className="px-6 py-4">Status</th>
+                                <th className="px-6 py-4">Localização</th>
+                                <th className="px-6 py-4">Contato</th>
+                                <th className="px-6 py-4">Endereço</th>
+                                <th className="px-6 py-4">Ações</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            {paginatedUsers.map((user) => (
+                            {paginatedCompanies.map((c) => (
                                 <tr
-                                    key={user.id}
-                                    className="border-b last:border-0 hover:bg-[#ffac2e]/5 transition"
+                                    key={c.id}
+                                    className="border-b hover:bg-[#ffac2e]/5"
                                 >
-                                    <td className="px-6 py-4 text-sm text-gray-700">
-                                        #{user.id.slice(0, 6)}
-                                    </td>
 
                                     <td className="px-6 py-4 font-medium text-gray-800">
-                                        {user.name}
+                                        {c.fantasyName}
+                                        <div className="text-xs text-gray-500">
+                                            {c.legalName}
+                                        </div>
                                     </td>
 
-                                    {/* ACTIONS */}
+                                    <td className="px-6 py-4 text-sm text-gray-700">
+                                        {c.adminName}
+                                        <div className="text-xs text-gray-500">
+                                            {c.adminEmail}
+                                        </div>
+                                    </td>
+
+                                    <td className="px-6 py-4 text-sm">
+                                        {c.cnpj}
+                                    </td>
+
                                     <td className="px-6 py-4">
-                                        <button
-                                            className="
-                                            flex items-center gap-2
-                                            px-3 py-1.5
-                                            rounded-lg
-                                            text-sm
-                                            font-medium
-                                            text-[#ffac2e]
-                                            hover:bg-[#ffac2e]/10
-                                            transition
-                                            cursor-pointer
-                                        "
-                                        >
+                                        <span className={`
+                                            px-2 py-1 rounded-lg text-xs font-medium
+                                            ${c.cnpj_status === "VALID"
+                                                ? "bg-green-100 text-green-700"
+                                                : "bg-red-100 text-red-700"
+                                            }
+                                        `}>
+                                            {c.cnpj_status}
+                                        </span>
+                                    </td>
+
+                                    <td className="px-6 py-4 text-sm text-gray-700">
+                                        {c.city} - {c.state}
+                                    </td>
+
+                                    <td className="px-6 py-4 text-sm text-gray-700">
+                                        {c.phone}
+                                    </td>
+
+                                    <td className="px-6 py-4 text-sm text-gray-500">
+                                        {c.address}
+                                    </td>
+
+                                    <td className="px-6 py-4">
+                                        <button className="flex items-center gap-2 text-[#ffac2e] hover:bg-[#ffac2e]/10 px-3 py-1.5 rounded-lg">
                                             <Eye size={16} />
                                             Ver
                                         </button>
                                     </td>
+
                                 </tr>
                             ))}
 
-                            {paginatedUsers.length === 0 && (
+                            {paginatedCompanies.length === 0 && (
                                 <tr>
-                                    <td
-                                        colSpan={5}
-                                        className="text-center py-10 text-gray-500"
-                                    >
+                                    <td colSpan={8} className="text-center py-10 text-gray-500">
                                         Nenhuma empresa encontrada
                                     </td>
                                 </tr>
                             )}
                         </tbody>
+
                     </table>
                 </div>
+
                 {/* PAGINATION */}
                 <div className="flex items-center justify-between px-6 py-4 border-t bg-gray-50">
 
                     <p className="text-sm text-gray-500">
                         Mostrando{" "}
                         <span className="font-medium">
-                            {paginatedUsers.length}
+                            {paginatedCompanies.length}
                         </span>{" "}
                         de{" "}
                         <span className="font-medium">
-                            {filteredUsers.length}
+                            {filteredCompanies.length}
                         </span>
                     </p>
 
                     <div className="flex items-center gap-2">
 
                         <button
-                            onClick={() =>
-                                setCurrentPage((prev) =>
-                                    Math.max(prev - 1, 1)
-                                )
-                            }
+                            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                             disabled={currentPage === 1}
-                            className="
-                                w-9 h-9
-                                rounded-lg
-                                border
-                                flex items-center justify-center
-                                disabled:opacity-40
-                                hover:bg-[#ffac2e]/10
-                            "
+                            className="w-9 h-9 border rounded-lg flex items-center justify-center disabled:opacity-40"
                         >
                             <ChevronLeft size={18} />
                         </button>
 
-                        <div className="text-sm font-medium px-2">
+                        <div className="text-sm">
                             {currentPage} / {totalPages || 1}
                         </div>
 
                         <button
-                            onClick={() =>
-                                setCurrentPage((prev) =>
-                                    Math.min(prev + 1, totalPages)
-                                )
-                            }
+                            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                             disabled={currentPage === totalPages}
-                            className="
-                                w-9 h-9
-                                rounded-lg
-                                border
-                                flex items-center justify-center
-                                disabled:opacity-40
-                                hover:bg-[#ffac2e]/10
-                            "
+                            className="w-9 h-9 border rounded-lg flex items-center justify-center disabled:opacity-40"
                         >
                             <ChevronRight size={18} />
                         </button>
