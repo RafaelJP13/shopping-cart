@@ -32,7 +32,7 @@ export default function UsersPage() {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const res = await fetch("http://localhost:3000/users");
+                const res = await fetch("http://localhost:3000/companies");
                 const data = await res.json();
                 setUsers(data);
             } catch (error) {
@@ -145,8 +145,6 @@ export default function UsersPage() {
                             <tr className="text-left text-sm text-gray-600">
                                 <th className="px-6 py-4 font-medium">ID</th>
                                 <th className="px-6 py-4 font-medium">Nome</th>
-                                <th className="px-6 py-4 font-medium">E-mail</th>
-                                <th className="px-6 py-4 font-medium">Função</th>
                                 <th className="px-6 py-4 font-medium">Ações</th>
                             </tr>
                         </thead>
@@ -163,16 +161,6 @@ export default function UsersPage() {
 
                                     <td className="px-6 py-4 font-medium text-gray-800">
                                         {user.name}
-                                    </td>
-
-                                    <td className="px-6 py-4 text-sm text-gray-600">
-                                        {user.email}
-                                    </td>
-
-                                    <td className="px-6 py-4">
-                                        <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#ffac2e]/20 text-[#c77700]">
-                                            {user.role}
-                                        </span>
                                     </td>
 
                                     {/* ACTIONS */}
