@@ -6,6 +6,8 @@ The solution enables employees to register purchases, sales, and operational act
 
 Built with a modern and scalable architecture, the platform supports multiple companies within a single environment while maintaining complete data isolation and security for each client. In addition, it offers intelligent dashboards, customizable reports, user and permission management, operational auditing, inventory management, product control, and sales tracking — creating a complete infrastructure for companies looking to digitize processes and improve operational efficiency.
 
+Learn more: 👉 [Visit Compre Flow](https://institucional-compre-flow.vercel.app/)
+
 ---
 
 # 🚀 About the Project
@@ -153,12 +155,6 @@ This project was created to improve skills in:
 - API design
 - Scalable project organization
 - Modern frontend development with React.js
-
----
-
-## 🔗 Learn More
-
-👉 [Visit Compre Flow](https://institucional-compre-flow.vercel.app/)
 
 ---
 
