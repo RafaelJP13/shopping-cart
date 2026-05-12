@@ -127,9 +127,9 @@ http://localhost:5173
 - [x] Authentication
 - [x] Unit Tests
 - [x] CI & CD
-- [ ] Add React Router
+- [x] Add React Router
+- [x] REST API for crud
 - [ ] Permission-Based Access Control (PBAC) 
-- [ ] REST API for easy stuffs
 - [ ] JWT in HttpOnly cookies
 - [ ] Company Dashboard
 - [ ] GraphQL for dashboards, aggregations, complex frontend querying
