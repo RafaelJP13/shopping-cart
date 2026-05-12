@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 
 import { InputMask } from "@react-input/mask";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 type BrasilApiResponse = {
     razao_social: string;
@@ -35,6 +37,7 @@ export default function CreateCompanyPage() {
         "idle" | "success" | "error"
     >("idle");
 
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         adminName: "",
         adminEmail: "",
@@ -170,7 +173,11 @@ export default function CreateCompanyPage() {
 
             await response.json();
 
-            alert("Empresa criada com sucesso!");
+            toast.success("Empresa criada com sucesso!");
+
+            setTimeout(() => {
+                navigate("/companies");
+            }, 1200);
 
             setFormData({
                 adminName: "",
@@ -197,7 +204,8 @@ export default function CreateCompanyPage() {
         } catch (error) {
             console.error(error);
 
-            alert("Erro ao criar empresa");
+            toast.success("Empresa criada com sucesso!");
+
         } finally {
             setLoading(false);
         }
