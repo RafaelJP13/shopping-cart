@@ -6,6 +6,7 @@ import {
     Eye,
     Plus,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 type User = {
     id: string;
@@ -25,6 +26,8 @@ export default function UsersPage() {
 
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -84,7 +87,7 @@ export default function UsersPage() {
 
                     {/* ADD COMPANY BUTTON */}
                     <button
-                        onClick={() => console.log("Add Company")}
+                        onClick={() => navigate("/companies/create")}
                         className="
                             px-4 py-2.5
                             bg-black
@@ -135,47 +138,47 @@ export default function UsersPage() {
 
             {/* TABLE */}
             <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full min-w-[700px]">
 
-                <table className="w-full min-w-[700px]">
+                        <thead className="bg-[#ffac2e]/10 border-b">
+                            <tr className="text-left text-sm text-gray-600">
+                                <th className="px-6 py-4 font-medium">ID</th>
+                                <th className="px-6 py-4 font-medium">Nome</th>
+                                <th className="px-6 py-4 font-medium">E-mail</th>
+                                <th className="px-6 py-4 font-medium">Função</th>
+                                <th className="px-6 py-4 font-medium">Ações</th>
+                            </tr>
+                        </thead>
 
-                    <thead className="bg-[#ffac2e]/10 border-b">
-                        <tr className="text-left text-sm text-gray-600">
-                            <th className="px-6 py-4 font-medium">ID</th>
-                            <th className="px-6 py-4 font-medium">Nome</th>
-                            <th className="px-6 py-4 font-medium">E-mail</th>
-                            <th className="px-6 py-4 font-medium">Função</th>
-                            <th className="px-6 py-4 font-medium">Ações</th>
-                        </tr>
-                    </thead>
+                        <tbody>
+                            {paginatedUsers.map((user) => (
+                                <tr
+                                    key={user.id}
+                                    className="border-b last:border-0 hover:bg-[#ffac2e]/5 transition"
+                                >
+                                    <td className="px-6 py-4 text-sm text-gray-700">
+                                        #{user.id.slice(0, 6)}
+                                    </td>
 
-                    <tbody>
-                        {paginatedUsers.map((user) => (
-                            <tr
-                                key={user.id}
-                                className="border-b last:border-0 hover:bg-[#ffac2e]/5 transition"
-                            >
-                                <td className="px-6 py-4 text-sm text-gray-700">
-                                    #{user.id.slice(0, 6)}
-                                </td>
+                                    <td className="px-6 py-4 font-medium text-gray-800">
+                                        {user.name}
+                                    </td>
 
-                                <td className="px-6 py-4 font-medium text-gray-800">
-                                    {user.name}
-                                </td>
+                                    <td className="px-6 py-4 text-sm text-gray-600">
+                                        {user.email}
+                                    </td>
 
-                                <td className="px-6 py-4 text-sm text-gray-600">
-                                    {user.email}
-                                </td>
+                                    <td className="px-6 py-4">
+                                        <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#ffac2e]/20 text-[#c77700]">
+                                            {user.role}
+                                        </span>
+                                    </td>
 
-                                <td className="px-6 py-4">
-                                    <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#ffac2e]/20 text-[#c77700]">
-                                        {user.role}
-                                    </span>
-                                </td>
-
-                                {/* ACTIONS */}
-                                <td className="px-6 py-4">
-                                    <button
-                                        className="
+                                    {/* ACTIONS */}
+                                    <td className="px-6 py-4">
+                                        <button
+                                            className="
                                             flex items-center gap-2
                                             px-3 py-1.5
                                             rounded-lg
@@ -186,27 +189,27 @@ export default function UsersPage() {
                                             transition
                                             cursor-pointer
                                         "
+                                        >
+                                            <Eye size={16} />
+                                            Ver
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+
+                            {paginatedUsers.length === 0 && (
+                                <tr>
+                                    <td
+                                        colSpan={5}
+                                        className="text-center py-10 text-gray-500"
                                     >
-                                        <Eye size={16} />
-                                        Ver
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-
-                        {paginatedUsers.length === 0 && (
-                            <tr>
-                                <td
-                                    colSpan={5}
-                                    className="text-center py-10 text-gray-500"
-                                >
-                                    Nenhuma empresa encontrada
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-
+                                        Nenhuma empresa encontrada
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
                 {/* PAGINATION */}
                 <div className="flex items-center justify-between px-6 py-4 border-t bg-gray-50">
 

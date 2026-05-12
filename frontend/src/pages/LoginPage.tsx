@@ -1,44 +1,54 @@
 import { useState } from "react";
 import { ShoppingBag, Mail, Lock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-type LoginPageProps = {
-    onLogin: () => void;
-};
+export default function LoginPage() {
 
-export default function LoginPage({ onLogin }: LoginPageProps) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+
+    const navigate = useNavigate();
 
     async function handleLogin() {
         try {
             setLoading(true);
             setError("");
 
-            const res = await fetch("http://localhost:3000/auth/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email,
-                    password,
-                }),
-            });
+            const res = await fetch(
+                "http://localhost:3000/auth/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password,
+                    }),
+                }
+            );
 
             if (!res.ok) {
-                throw new Error("E-mail ou senha inválidos. Tente novamente.");
+                throw new Error(
+                    "E-mail ou senha inválidos. Tente novamente."
+                );
             }
 
             const data = await res.json();
 
-            // Save token (important for auth)
-            localStorage.setItem("token", data.token);
+            localStorage.setItem(
+                "token",
+                data.token
+            );
 
-            onLogin(); // go to dashboard
+            navigate("/dashboard");
+
         } catch (err: any) {
-            setError(err.message || "Login failed");
+            setError(
+                err.message || "Login failed"
+            );
         } finally {
             setLoading(false);
         }
@@ -59,7 +69,7 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
                     </h1>
 
                     <p className="text-zinc-400 mt-2 text-center">
-                        Faça login para continuar comprando
+                        Faça login para continuar
                     </p>
                 </div>
 
@@ -87,7 +97,9 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
                                 type="email"
                                 placeholder="you@example.com"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) =>
+                                    setEmail(e.target.value)
+                                }
                                 className="w-full bg-zinc-800 border border-zinc-700 rounded-xl py-3 pl-10 pr-4 text-white outline-none focus:ring-2 focus:ring-white"
                             />
                         </div>
@@ -109,7 +121,9 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
                                 type="password"
                                 placeholder="••••••••"
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(e) =>
+                                    setPassword(e.target.value)
+                                }
                                 className="w-full bg-zinc-800 border border-zinc-700 rounded-xl py-3 pl-10 pr-4 text-white outline-none focus:ring-2 focus:ring-white"
                             />
                         </div>
@@ -128,7 +142,9 @@ export default function LoginPage({ onLogin }: LoginPageProps) {
                         disabled={loading}
                         className="w-full bg-white text-black font-semibold py-3 rounded-xl hover:bg-zinc-200 transition disabled:opacity-50"
                     >
-                        {loading ? "Carregando..." : "Entrar"}
+                        {loading
+                            ? "Carregando..."
+                            : "Entrar"}
                     </button>
                 </form>
             </div>

@@ -1,25 +1,44 @@
-import { useState } from "react";
-import LoginPage from "./pages/LoginPage";
-import { DashboardPage } from "./pages/DashboardPage";
-import { CartProvider } from "./context/CartContext";
-import { DashboardLayout } from "./layouts/DashboardLayout";
-import UsersPage from "./pages/internal/UsersPage";
+import { Routes, Route } from "react-router-dom";
 
-type Page = "Login" | "Dashboard" | "Usuários" | "Pedidos";
+import LoginPage from "./pages/LoginPage";
+
+import { DashboardPage } from "./pages/DashboardPage";
+
+import CompaniesPage from "./pages/internal/company/CompanyPage";
+import CreateCompanyPage from "./pages/internal/company/CreateCompanyPage";
+
+import { DashboardLayout } from "./layouts/DashboardLayout";
 
 export default function App() {
-    const [page, setPage] = useState<Page>("Login");
-
-    if (page === "Login") {
-        return <LoginPage onLogin={() => setPage("Dashboard")} />;
-    }
-
     return (
-        <CartProvider>
-            <DashboardLayout page={page} setPage={setPage}>
-                {page === "Dashboard" && <DashboardPage />}
-                {page === "Usuários" && <UsersPage />}
-            </DashboardLayout>
-        </CartProvider>
+        <Routes>
+
+            {/* PUBLIC */}
+            <Route
+                path="/"
+                element={<LoginPage />}
+            />
+
+            {/* PRIVATE LAYOUT */}
+            <Route element={<DashboardLayout />}>
+
+                <Route
+                    path="/dashboard"
+                    element={<DashboardPage />}
+                />
+
+                <Route
+                    path="/companies"
+                    element={<CompaniesPage />}
+                />
+
+                <Route
+                    path="/companies/create"
+                    element={<CreateCompanyPage />}
+                />
+
+            </Route>
+
+        </Routes>
     );
 }
