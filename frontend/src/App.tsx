@@ -10,6 +10,7 @@ import CreateCompanyPage from "./pages/internal/company/CreateCompanyPage";
 import { DashboardLayout } from "./layouts/DashboardLayout";
 
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import CompanyDetailsPage from "./pages/internal/company/CompanyDetails";
 
 export default function App() {
     return (
@@ -44,8 +45,10 @@ export default function App() {
                     path="/companies/create"
                     element={<CreateCompanyPage />}
                 />
-
-
+                <Route
+                    path="/companies/:id"
+                    element={<CompanyDetailsPage />}
+                />
 
             </Route>
 
