@@ -11,17 +11,8 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
     console.log('🚀 Starting CompreFlow...\n');
 
-
     // BACKEND
     const app = await NestFactory.create(AppModule);
-
-    app.useGlobalPipes(
-      new ValidationPipe({
-        whitelist: false,
-        transform: false,
-      }),
-    );
-
 
     app.enableCors({
       origin: 'http://localhost:5173',
