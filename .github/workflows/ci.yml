@@ -29,6 +29,10 @@ jobs:
       - name: Run tests
         run: docker compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from backend
 
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm ci
+
       - name: Run Snyk Security Scan
         uses: snyk/actions/node@master
         with:
