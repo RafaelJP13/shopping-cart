@@ -1,0 +1,23 @@
+import { Injectable } from "@nestjs/common";
+import { PrismaService } from "../../../prisma/prisma.service";
+
+export type UpdateCompanyDTO = {
+    adminName: string;
+    adminEmail: string;
+
+    representante: string;
+
+    fantasyName: string;
+    legalName: string;
+
+    cnpj: string;
+    cnpj_status: string;
+
+    phone: string;
+
+    cep: string;
+    state: string;
+    city: string;
+
+    address: string;
+};

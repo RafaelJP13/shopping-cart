@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { NotFoundException } from '@nestjs/common';
+import { NotFoundException, ConflictException } from '@nestjs/common';
 
 import { mockDeep, DeepMockProxy } from 'jest-mock-extended';
 
@@ -266,6 +266,171 @@ describe('CompanyService', () => {
                     address: dto.address,
                 },
             });
+        });
+    });
+
+    describe('update', () => {
+        it('should update a company successfully', async () => {
+            const dto = {
+                fantasyName: 'Nike Updated',
+                cnpj: '12345678000190',
+            };
+
+            const existingCompany: Company = {
+                id: '1',
+
+                fantasyName: 'Nike',
+                legalName: 'Nike LTDA',
+
+                cnpj: '12345678000190',
+                cnpj_status: 'VALID',
+
+                representante: 'Rafael Santos',
+
+                adminName: 'Rafael',
+                adminEmail: 'rafael@test.com',
+
+                phone: '13999999999',
+
+                cep: '11000-000',
+                state: 'SP',
+                city: 'Santos',
+
+                address: 'Av Paulista 1000',
+
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            };
+
+            const updatedCompany: Company = {
+                ...existingCompany,
+                fantasyName:
+                    dto.fantasyName,
+            };
+
+            prisma.company.findUnique.mockResolvedValue(
+                existingCompany,
+            );
+
+            prisma.company.findFirst.mockResolvedValue(
+                null,
+            );
+
+            prisma.company.update.mockResolvedValue(
+                updatedCompany,
+            );
+
+            const result = await service.update(
+                '1',
+                dto,
+            );
+
+            expect(result).toEqual(
+                updatedCompany,
+            );
+
+            expect(
+                prisma.company.update,
+            ).toHaveBeenCalledWith({
+                where: {
+                    id: '1',
+                },
+                data: {
+                    adminName: undefined,
+
+                    adminEmail: undefined,
+
+                    representante:
+                        undefined,
+
+                    fantasyName:
+                        dto.fantasyName,
+
+                    legalName: undefined,
+
+                    cnpj: dto.cnpj,
+
+                    cnpj_status:
+                        undefined,
+
+                    phone: undefined,
+
+                    cep: undefined,
+
+                    state: undefined,
+
+                    city: undefined,
+
+                    address: undefined,
+                },
+            });
+        });
+
+        it('should throw when company does not exist', async () => {
+            prisma.company.findUnique.mockResolvedValue(
+                null,
+            );
+
+            await expect(
+                service.update('999', {
+                    fantasyName: 'Test',
+                }),
+            ).rejects.toThrow(
+                new NotFoundException(
+                    'Empresa não encontrada',
+                ),
+            );
+        });
+
+        it('should throw when cnpj already exists in another company', async () => {
+            const existingCompany: Company = {
+                id: '1',
+
+                fantasyName: 'Nike',
+                legalName: 'Nike LTDA',
+
+                cnpj: '12345678000190',
+                cnpj_status: 'VALID',
+
+                representante: 'Rafael Santos',
+
+                adminName: 'Rafael',
+                adminEmail: 'rafael@test.com',
+
+                phone: '13999999999',
+
+                cep: '11000-000',
+                state: 'SP',
+                city: 'Santos',
+
+                address: 'Av Paulista 1000',
+
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            };
+
+            const duplicatedCompany: Company = {
+                ...existingCompany,
+                id: '2',
+            };
+
+            prisma.company.findUnique.mockResolvedValue(
+                existingCompany,
+            );
+
+            prisma.company.findFirst.mockResolvedValue(
+                duplicatedCompany,
+            );
+
+            await expect(
+                service.update('1', {
+                    cnpj: '12345678000190',
+                }),
+            ).rejects.toThrow(
+                new ConflictException(
+                    'CNPJ já está em uso',
+                ),
+            );
         });
     });
 });

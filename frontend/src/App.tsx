@@ -6,6 +6,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 
 import CompanyPage from "./pages/internal/company/CompanyPage";
 import CreateCompanyPage from "./pages/internal/company/CreateCompanyPage";
+import UpdateCompanyPage from "./pages/internal/company/UpdateCompanyPage";
 
 import { DashboardLayout } from "./layouts/DashboardLayout";
 
@@ -48,6 +49,10 @@ export default function App() {
                 <Route
                     path="/companies/:id"
                     element={<CompanyDetailsPage />}
+                />
+                <Route
+                    path="/companies/update/:id"
+                    element={<UpdateCompanyPage />}
                 />
 
             </Route>

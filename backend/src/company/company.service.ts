@@ -1,10 +1,11 @@
 // company.service.ts
 
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 
 import { PrismaService } from "../../prisma/prisma.service";
 
-import { CreateCompanyDTO } from "./dto/create-company-dto";
+import { CreateCompanyDTO } from "./dto/create-company.dto";
+import { UpdateCompanyDTO } from "./dto/update-company.dto";
 
 @Injectable()
 export class CompanyService {
@@ -61,5 +62,56 @@ export class CompanyService {
         }
 
         return company;
+    }
+
+    async update(id: string, data: UpdateCompanyDTO) {
+
+
+        const company = await this.prisma.company.findUnique({
+            where: { id },
+        });
+
+        console.log('Company found:', company, id, data);
+
+        if (!company) {
+            throw new NotFoundException('Empresa não encontrada');
+        }
+
+        if (data.cnpj) {
+            const companyWithSameCnpj =
+                await this.prisma.company.findFirst({
+                    where: {
+                        cnpj: data.cnpj,
+                        NOT: { id },
+                    },
+                });
+
+            if (companyWithSameCnpj) {
+                throw new ConflictException(
+                    'CNPJ já está em uso',
+                );
+            }
+        }
+
+        if (data.adminEmail) {
+            const companyWithSameEmail =
+                await this.prisma.company.findFirst({
+                    where: {
+                        adminEmail: data.adminEmail,
+                        NOT: { id },
+                    },
+                });
+
+            if (companyWithSameEmail) {
+                throw new ConflictException(
+                    'Email já está em uso!',
+                );
+            }
+        }
+
+        return this.prisma.company.update({
+            where: { id },
+            data,
+        });
     }
 }

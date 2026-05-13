@@ -5,6 +5,7 @@ import {
     ChevronRight,
     Eye,
     Plus,
+    Edit
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -219,6 +220,15 @@ export default function CompaniesPage() {
                                         <button className="flex items-center gap-2 text-[#ffac2e] hover:bg-[#ffac2e]/10 px-3 py-1.5 rounded-lg cursor-pointer" onClick={() => navigate(`/companies/${c.id}`)}>
                                             <Eye size={16} />
                                             Ver
+                                        </button>
+                                        <button
+                                            className="flex items-center gap-2 text-[#ffac2e] hover:bg-[#ffac2e]/10 px-3 py-1.5 rounded-lg cursor-pointer"
+                                            onClick={() =>
+                                                navigate(`/companies/update/${c.id}`)
+                                            }
+                                        >
+                                            <Edit size={16} />
+                                            Editar
                                         </button>
                                     </td>
 
