@@ -137,6 +137,7 @@ http://localhost:5173
 - [x] REST API for crud
 - [x] Unit Tests
 - [x] Snyk to scan the dependencies
+- [ ] UI Componentization
 - [ ] JWT in HttpOnly cookies
 - [ ] Permission-Based Access Control (PBAC) 
 - [ ] Company Dashboard
