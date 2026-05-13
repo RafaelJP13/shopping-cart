@@ -135,14 +135,15 @@ http://localhost:5173
 - [x] CI & CD
 - [x] Add React Router
 - [x] REST API for crud
-- [ ] Permission-Based Access Control (PBAC) 
+- [x] Unit Tests
 - [ ] JWT in HttpOnly cookies
+- [ ] Permission-Based Access Control (PBAC) 
 - [ ] Company Dashboard
 - [ ] GraphQL for dashboards, aggregations, complex frontend querying
-- [ ] Internal users crud
 - [ ] Company crud
 - [ ] Employers Company crud 
-      
+- [ ] Internal users crud
+
 
 ---
 
