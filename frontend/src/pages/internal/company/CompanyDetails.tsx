@@ -108,7 +108,7 @@ export default function CompanyDetailsPage() {
 
                 <button
                     onClick={() => navigate("/companies")}
-                    className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[#FFAC2E] hover:bg-zinc-100 transition"
+                    className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[#FFAC2E] hover:bg-zinc-100 transition cursor-pointer"
                 >
                     <ArrowLeft size={18} />
                     Voltar
