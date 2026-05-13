@@ -136,6 +136,7 @@ http://localhost:5173
 - [x] Add React Router
 - [x] REST API for crud
 - [x] Unit Tests
+- [x] Snyk to scan the dependencies
 - [ ] JWT in HttpOnly cookies
 - [ ] Permission-Based Access Control (PBAC) 
 - [ ] Company Dashboard
