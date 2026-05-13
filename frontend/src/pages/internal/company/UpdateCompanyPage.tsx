@@ -314,20 +314,20 @@ export default function UpdateCompanyPage() {
         return (
             <div
                 className="
-                    flex items-center justify-center
-                    min-h-screen
-                    bg-gray-50
-                "
+                        flex items-center justify-center
+                        min-h-screen
+                        bg-gray-50
+                    "
             >
                 <div
                     className="
-                        w-10 h-10
-                        border-4
-                        border-[#ffac2e]
-                        border-t-transparent
-                        rounded-full
-                        animate-spin
-                    "
+                            w-10 h-10
+                            border-4
+                            border-[#ffac2e]
+                            border-t-transparent
+                            rounded-full
+                            animate-spin
+                        "
                 />
             </div>
         );
@@ -353,15 +353,15 @@ export default function UpdateCompanyPage() {
                         window.history.back()
                     }
                     className="
-                        flex items-center gap-2
-                        px-4 py-2
-                        bg-white
-                        border border-gray-200
-                        rounded-2xl
-                        hover:bg-gray-100
-                        transition
-                        shadow-sm
-                    "
+                            flex items-center gap-2
+                            px-4 py-2
+                            bg-white
+                            border border-gray-200
+                            rounded-2xl
+                            hover:bg-gray-100
+                            transition
+                            shadow-sm
+                        "
                 >
                     <ArrowLeft size={16} />
                     Voltar
@@ -372,21 +372,21 @@ export default function UpdateCompanyPage() {
             <form
                 onSubmit={handleSubmit}
                 className="
-                    bg-white
-                    border border-gray-100
-                    rounded-3xl
-                    shadow-sm
-                    overflow-hidden
-                "
+                        bg-white
+                        border border-gray-100
+                        rounded-3xl
+                        shadow-sm
+                        overflow-hidden
+                    "
             >
                 {/* TOP BAR */}
                 <div
                     className="
-                        h-2
-                        bg-gradient-to-r
-                        from-[#ffac2e]
-                        to-orange-400
-                    "
+                            h-2
+                            bg-gradient-to-r
+                            from-[#ffac2e]
+                            to-orange-400
+                        "
                 />
 
                 <div className="p-8">
@@ -395,11 +395,11 @@ export default function UpdateCompanyPage() {
                         <div className="flex items-center gap-3 mb-6">
                             <div
                                 className="
-                                    w-10 h-10
-                                    rounded-2xl
-                                    bg-[#ffac2e]/10
-                                    flex items-center justify-center
-                                "
+                                        w-10 h-10
+                                        rounded-2xl
+                                        bg-[#ffac2e]/10
+                                        flex items-center justify-center
+                                    "
                             >
                                 <Building2
                                     size={20}
@@ -439,15 +439,15 @@ export default function UpdateCompanyPage() {
                                     }
                                     placeholder="Digite o nome"
                                     className="
-                                        w-full
-                                        px-4 py-3
-                                        rounded-2xl
-                                        border border-gray-200
-                                        outline-none
-                                        focus:ring-4
-                                        focus:ring-[#ffac2e]/20
-                                        focus:border-[#ffac2e]
-                                    "
+                                            w-full
+                                            px-4 py-3
+                                            rounded-2xl
+                                            border border-gray-200
+                                            outline-none
+                                            focus:ring-4
+                                            focus:ring-[#ffac2e]/20
+                                            focus:border-[#ffac2e]
+                                        "
                                 />
                             </div>
 
@@ -462,12 +462,12 @@ export default function UpdateCompanyPage() {
                                     <Mail
                                         size={18}
                                         className="
-                                            absolute
-                                            left-4
-                                            top-1/2
-                                            -translate-y-1/2
-                                            text-gray-400
-                                        "
+                                                absolute
+                                                left-4
+                                                top-1/2
+                                                -translate-y-1/2
+                                                text-gray-400
+                                            "
                                     />
 
                                     <input
@@ -482,20 +482,20 @@ export default function UpdateCompanyPage() {
                                         }
                                         placeholder="admin@empresa.com"
                                         className="
-                                            w-full
-                                            pl-12
-                                            pr-4
-                                            py-3
-                                            rounded-2xl
-                                            border border-gray-200
-                                            outline-none
-                                            focus:ring-4
-                                            focus:ring-[#ffac2e]/20
-                                            focus:border-[#ffac2e]
-                                            cursor-not-allowed
-                                             bg-gray-100
-                                        text-gray-500
-                                        "
+                                                w-full
+                                                pl-12
+                                                pr-4
+                                                py-3
+                                                rounded-2xl
+                                                border border-gray-200
+                                                outline-none
+                                                focus:ring-4
+                                                focus:ring-[#ffac2e]/20
+                                                focus:border-[#ffac2e]
+                                                cursor-not-allowed
+                                                bg-gray-100
+                                            text-gray-500
+                                            "
 
                                     />
                                 </div>
@@ -511,12 +511,12 @@ export default function UpdateCompanyPage() {
                                     <Search
                                         size={18}
                                         className="
-                                            absolute
-                                            left-4
-                                            top-1/2
-                                            -translate-y-1/2
-                                            text-gray-400
-                                        "
+                                                absolute
+                                                left-4
+                                                top-1/2
+                                                -translate-y-1/2
+                                                text-gray-400
+                                            "
                                     />
 
                                     <InputMask
@@ -535,39 +535,39 @@ export default function UpdateCompanyPage() {
                                         }
                                         placeholder="00.000.000/0000-00"
                                         className="
-                                            w-full
-                                            pl-12
-                                            pr-12
-                                            py-3
-                                            rounded-2xl
-                                            border border-gray-200
-                                            bg-white
-                                            outline-none
-                                            transition
-                                            focus:ring-4
-                                            focus:ring-[#ffac2e]/20
-                                            focus:border-[#ffac2e]
-                                        "
+                                                w-full
+                                                pl-12
+                                                pr-12
+                                                py-3
+                                                rounded-2xl
+                                                border border-gray-200
+                                                bg-white
+                                                outline-none
+                                                transition
+                                                focus:ring-4
+                                                focus:ring-[#ffac2e]/20
+                                                focus:border-[#ffac2e]
+                                            "
                                     />
 
                                     <div
                                         className="
-                                            absolute
-                                            right-4
-                                            top-1/2
-                                            -translate-y-1/2
-                                        "
+                                                absolute
+                                                right-4
+                                                top-1/2
+                                                -translate-y-1/2
+                                            "
                                     >
                                         {loadingCNPJ && (
                                             <div
                                                 className="
-                                                    w-5 h-5
-                                                    border-2
-                                                    border-[#ffac2e]
-                                                    border-t-transparent
-                                                    rounded-full
-                                                    animate-spin
-                                                "
+                                                        w-5 h-5
+                                                        border-2
+                                                        border-[#ffac2e]
+                                                        border-t-transparent
+                                                        rounded-full
+                                                        animate-spin
+                                                    "
                                             />
                                         )}
 
@@ -609,15 +609,15 @@ export default function UpdateCompanyPage() {
                                     }
                                     disabled
                                     className="
-                                        w-full
-                                        px-4 py-3
-                                        rounded-2xl
-                                        border border-gray-200
-                                        bg-gray-100
-                                        text-gray-500
-                                        cursor-not-allowed
-                                        outline-none
-                                    "
+                                            w-full
+                                            px-4 py-3
+                                            rounded-2xl
+                                            border border-gray-200
+                                            bg-gray-100
+                                            text-gray-500
+                                            cursor-not-allowed
+                                            outline-none
+                                        "
                                 />
                             </div>
 
@@ -635,15 +635,15 @@ export default function UpdateCompanyPage() {
                                     }
                                     disabled
                                     className="
-                                        w-full
-                                        px-4 py-3
-                                        rounded-2xl
-                                        border border-gray-200
-                                        bg-gray-100
-                                        text-gray-500
-                                        cursor-not-allowed
-                                        outline-none
-                                    "
+                                            w-full
+                                            px-4 py-3
+                                            rounded-2xl
+                                            border border-gray-200
+                                            bg-gray-100
+                                            text-gray-500
+                                            cursor-not-allowed
+                                            outline-none
+                                        "
                                 />
                             </div>
 
@@ -661,15 +661,15 @@ export default function UpdateCompanyPage() {
                                     }
                                     disabled
                                     className="
-                                        w-full
-                                        px-4 py-3
-                                        rounded-2xl
-                                        border border-gray-200
-                                        bg-gray-100
-                                        text-gray-500
-                                        cursor-not-allowed
-                                        outline-none
-                                    "
+                                            w-full
+                                            px-4 py-3
+                                            rounded-2xl
+                                            border border-gray-200
+                                            bg-gray-100
+                                            text-gray-500
+                                            cursor-not-allowed
+                                            outline-none
+                                        "
                                 />
                             </div>
 
@@ -683,12 +683,12 @@ export default function UpdateCompanyPage() {
                                     <Phone
                                         size={18}
                                         className="
-                                            absolute
-                                            left-4
-                                            top-1/2
-                                            -translate-y-1/2
-                                            text-gray-400
-                                        "
+                                                absolute
+                                                left-4
+                                                top-1/2
+                                                -translate-y-1/2
+                                                text-gray-400
+                                            "
                                     />
 
                                     <InputMask
@@ -707,17 +707,17 @@ export default function UpdateCompanyPage() {
                                         }
                                         placeholder="(11) 99999-9999"
                                         className="
-                                            w-full
-                                            pl-12
-                                            pr-4
-                                            py-3
-                                            rounded-2xl
-                                            border border-gray-200
-                                            outline-none
-                                            focus:ring-4
-                                            focus:ring-[#ffac2e]/20
-                                            focus:border-[#ffac2e]
-                                        "
+                                                w-full
+                                                pl-12
+                                                pr-4
+                                                py-3
+                                                rounded-2xl
+                                                border border-gray-200
+                                                outline-none
+                                                focus:ring-4
+                                                focus:ring-[#ffac2e]/20
+                                                focus:border-[#ffac2e]
+                                            "
                                     />
                                 </div>
                             </div>
@@ -729,11 +729,11 @@ export default function UpdateCompanyPage() {
                         <div className="flex items-center gap-3 mb-6">
                             <div
                                 className="
-                                    w-10 h-10
-                                    rounded-2xl
-                                    bg-[#ffac2e]/10
-                                    flex items-center justify-center
-                                "
+                                        w-10 h-10
+                                        rounded-2xl
+                                        bg-[#ffac2e]/10
+                                        flex items-center justify-center
+                                    "
                             >
                                 <MapPin
                                     size={20}
@@ -776,15 +776,15 @@ export default function UpdateCompanyPage() {
                                     }
                                     placeholder="11325-030"
                                     className="
-                                        w-full
-                                        px-4 py-3
-                                        rounded-2xl
-                                        border border-gray-200
-                                        outline-none
-                                        focus:ring-4
-                                        focus:ring-[#ffac2e]/20
-                                        focus:border-[#ffac2e]
-                                    "
+                                            w-full
+                                            px-4 py-3
+                                            rounded-2xl
+                                            border border-gray-200
+                                            outline-none
+                                            focus:ring-4
+                                            focus:ring-[#ffac2e]/20
+                                            focus:border-[#ffac2e]
+                                        "
                                 />
                             </div>
 
@@ -805,15 +805,15 @@ export default function UpdateCompanyPage() {
                                     }
                                     placeholder="SP"
                                     className="
-                                        w-full
-                                        px-4 py-3
-                                        rounded-2xl
-                                        border border-gray-200
-                                        outline-none
-                                        focus:ring-4
-                                        focus:ring-[#ffac2e]/20
-                                        focus:border-[#ffac2e]
-                                    "
+                                            w-full
+                                            px-4 py-3
+                                            rounded-2xl
+                                            border border-gray-200
+                                            outline-none
+                                            focus:ring-4
+                                            focus:ring-[#ffac2e]/20
+                                            focus:border-[#ffac2e]
+                                        "
                                 />
                             </div>
 
@@ -834,15 +834,15 @@ export default function UpdateCompanyPage() {
                                     }
                                     placeholder="Rua, número e bairro"
                                     className="
-                                        w-full
-                                        px-4 py-3
-                                        rounded-2xl
-                                        border border-gray-200
-                                        outline-none
-                                        focus:ring-4
-                                        focus:ring-[#ffac2e]/20
-                                        focus:border-[#ffac2e]
-                                    "
+                                            w-full
+                                            px-4 py-3
+                                            rounded-2xl
+                                            border border-gray-200
+                                            outline-none
+                                            focus:ring-4
+                                            focus:ring-[#ffac2e]/20
+                                            focus:border-[#ffac2e]
+                                        "
                                 />
                             </div>
 
@@ -863,15 +863,15 @@ export default function UpdateCompanyPage() {
                                     }
                                     placeholder="São Paulo"
                                     className="
-                                        w-full
-                                        px-4 py-3
-                                        rounded-2xl
-                                        border border-gray-200
-                                        outline-none
-                                        focus:ring-4
-                                        focus:ring-[#ffac2e]/20
-                                        focus:border-[#ffac2e]
-                                    "
+                                            w-full
+                                            px-4 py-3
+                                            rounded-2xl
+                                            border border-gray-200
+                                            outline-none
+                                            focus:ring-4
+                                            focus:ring-[#ffac2e]/20
+                                            focus:border-[#ffac2e]
+                                        "
                                 />
                             </div>
                         </div>
@@ -883,20 +883,20 @@ export default function UpdateCompanyPage() {
                             type="submit"
                             disabled={loading}
                             className="
-                                flex items-center gap-2
-                                px-6 py-3
-                                rounded-2xl
-                                bg-[#ffac2e]
-                                text-white
-                                font-semibold
-                                shadow-lg
-                                shadow-[#ffac2e]/20
-                                hover:opacity-90
-                                transition
-                                disabled:opacity-50
-                                cursor-pointer
+                                    flex items-center gap-2
+                                    px-6 py-3
+                                    rounded-2xl
+                                    bg-[#ffac2e]
+                                    text-white
+                                    font-semibold
+                                    shadow-lg
+                                    shadow-[#ffac2e]/20
+                                    hover:opacity-90
+                                    transition
+                                    disabled:opacity-50
+                                    cursor-pointer
 
-                            "
+                                "
                         >
                             <Save size={18} />
 

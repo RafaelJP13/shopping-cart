@@ -6,7 +6,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 
 import CompanyPage from "./pages/internal/company/CompanyPage";
 import CreateCompanyPage from "./pages/internal/company/CreateCompanyPage";
-import UpdateCompanyPage from "./pages/internal/company/UpdateCompanyPage";
+import UpdateCompanyPage from "./pages/internal/company/UpdateCompanyPage/index";
 
 import { DashboardLayout } from "./layouts/DashboardLayout";
 
