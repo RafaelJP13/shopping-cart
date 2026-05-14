@@ -18,7 +18,7 @@ export function CompanyHeader({ onBack }: Props) {
 
             <button
                 onClick={onBack}
-                className="flex items-center gap-2 px-4 py-2 bg-white border rounded-2xl hover:bg-gray-100"
+                className="flex items-center gap-2 px-4 py-2 bg-white border rounded-2xl hover:bg-gray-100 cursor-pointer"
             >
                 <ArrowLeft size={16} />
                 Voltar

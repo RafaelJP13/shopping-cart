@@ -239,6 +239,7 @@ export default function CreateCompanyPage() {
                         hover:bg-gray-100
                         transition
                         shadow-sm
+                        cursor-pointer
                     "
                 >
                     <ArrowLeft size={16} />

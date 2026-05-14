@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import { CompanyHeader } from "../components/CompanyHeader";
 import { CompanyForm } from "../components/CompanyForm";
+
 import { CompanyInfoSection } from "../components/sections/CompanyInfoSection";
 import { AddressSection } from "../components/sections/AddressSection";
 import { ActionsSection } from "../components/sections/ActionsSection";
@@ -14,9 +15,11 @@ export default function UpdateCompanyPage() {
     const navigate = useNavigate();
     const { id } = useParams();
 
-    const company = useCompany(id);
+    const company = useCompany();
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
         company.setFormData({
             ...company.formData,
             [e.target.name]: e.target.value,
@@ -27,8 +30,15 @@ export default function UpdateCompanyPage() {
         try {
             company.setLoadingPage(true);
 
+            const token = localStorage.getItem("token");
+
             const response = await fetch(
-                `http://localhost:3000/companies/${id}`
+                `http://localhost:3000/companies/${id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
             );
 
             if (!response.ok) {
@@ -40,57 +50,76 @@ export default function UpdateCompanyPage() {
             company.setFormData({
                 adminName: data.adminName || "",
                 adminEmail: data.adminEmail || "",
+
                 representante: data.representante || "",
+
                 fantasyName: data.fantasyName || "",
                 legalName: data.legalName || "",
+
                 cnpj: data.cnpj || "",
                 cnpj_status: data.cnpj_status || "",
+
                 phone: data.phone || "",
+
                 cep: data.cep || "",
                 state: data.state || "",
                 city: data.city || "",
+
                 address: data.address || "",
             });
 
             company.setCnpjStatus("success");
-        } catch (err) {
+        } catch (error) {
             toast.error("Erro ao carregar empresa");
+
             navigate("/companies");
         } finally {
             company.setLoadingPage(false);
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (
+        e: React.FormEvent
+    ) => {
         e.preventDefault();
 
         try {
             company.setLoading(true);
+
+            const token = localStorage.getItem("token");
 
             const response = await fetch(
                 `http://localhost:3000/companies/${id}`,
                 {
                     method: "PUT",
                     headers: {
-                        "Content-Type": "application/json",
+                        "Content-Type":
+                            "application/json",
+                        Authorization: `Bearer ${token}`,
                     },
-                    body: JSON.stringify(company.formData),
+                    body: JSON.stringify(
+                        company.formData
+                    ),
                 }
             );
 
-            const data = await response.json();
-
             if (!response.ok) {
-                throw new Error(data.message || "Erro ao atualizar empresa");
+                throw new Error(
+                    "Erro ao atualizar empresa"
+                );
             }
 
-            toast.success("Empresa atualizada com sucesso!");
+            toast.success(
+                "Empresa atualizada com sucesso!"
+            );
 
             setTimeout(() => {
                 navigate("/companies");
             }, 1200);
-        } catch (err: any) {
-            toast.error(err.message || "Erro ao atualizar empresa");
+        } catch (error) {
+            toast.error(
+                "Erro ao atualizar empresa"
+            );
         } finally {
             company.setLoading(false);
         }
@@ -110,17 +139,27 @@ export default function UpdateCompanyPage() {
 
     return (
         <div className="p-6 w-full bg-gray-50 min-h-screen">
+            <CompanyHeader
+                title="Atualizar Empresa"
+                description="Atualize os dados da empresa"
+                onBack={() => navigate(-1)}
+            />
 
-            <CompanyHeader onBack={() => navigate(-1)} />
-
-            <CompanyForm onSubmit={handleSubmit}>
-
+            <CompanyForm
+                onSubmit={handleSubmit}
+            >
                 <CompanyInfoSection
                     formData={company.formData}
                     onChange={handleChange}
-                    onDocumentChange={company.handleDocumentChange}
-                    loadingCNPJ={company.loadingCNPJ}
-                    cnpjStatus={company.cnpjStatus}
+                    onDocumentChange={
+                        company.handleDocumentChange
+                    }
+                    loadingCNPJ={
+                        company.loadingCNPJ
+                    }
+                    cnpjStatus={
+                        company.cnpjStatus
+                    }
                 />
 
                 <div className="mt-10">
@@ -130,10 +169,12 @@ export default function UpdateCompanyPage() {
                     />
                 </div>
 
-                <ActionsSection loading={company.loading} />
-
+                <ActionsSection
+                    loading={company.loading}
+                    submitText="Atualizar Empresa"
+                    loadingText="Atualizando..."
+                />
             </CompanyForm>
-
         </div>
     );
 }
