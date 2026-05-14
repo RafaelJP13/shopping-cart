@@ -24,9 +24,8 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/shopping_cart
-      JWT_SECRET: supersecret
-
+      POSTGRES_URL: ${POSTGRES_URL}
+      JWT_SECRET: ${JWT_SECRET}
   postgres:
     image: postgres:16
     container_name: shopping-cart-db
@@ -34,9 +33,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: shopping_cart
+      POSTGRES_USER:  ${POSTGRES_USER}
+      POSTGRES_PASSWORD:  ${POSTGRES_PASSWORD}
+      POSTGRES_DB:  ${POSTGRES_DB}
     volumes:
       - postgres_data:/var/lib/postgresql/data
 

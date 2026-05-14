@@ -2,20 +2,23 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 
-import { PrismaModule } from '../../prisma/prisma.module';
-
-import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
+import { AuthController } from './auth.controller';
 import { JwtStrategy } from './strategies/jwt.strategy';
+
+const jwtSecret = process.env.JWT_SECRET;
+
+if (!jwtSecret) {
+    throw new Error('JWT_SECRET is not defined');
+}
 
 @Module({
     imports: [
-        PrismaModule,
         PassportModule,
         JwtModule.register({
-            secret: process.env.JWT_SECRET || 'secret',
+            secret: jwtSecret,
             signOptions: {
-                expiresIn: '7d',
+                expiresIn: '1d',
             },
         }),
     ],

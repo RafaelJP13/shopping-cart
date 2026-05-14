@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export function useCompany(id: string | undefined) {
     const [loading, setLoading] = useState(false);
     const [loadingPage, setLoadingPage] = useState(true);

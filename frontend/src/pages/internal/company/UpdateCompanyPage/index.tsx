@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
-import { CompanyHeader } from "./components/CompanyHeader";
-import { CompanyForm } from "./components/CompanyForm";
-import { CompanyInfoSection } from "./components/sections/CompanyInfoSection";
-import { AddressSection } from "./components/sections/AddressSection";
-import { ActionsSection } from "./components/sections/ActionsSection";
+import { CompanyHeader } from "../components/CompanyHeader";
+import { CompanyForm } from "../components/CompanyForm";
+import { CompanyInfoSection } from "../components/sections/CompanyInfoSection";
+import { AddressSection } from "../components/sections/AddressSection";
+import { ActionsSection } from "../components/sections/ActionsSection";
 
-// se você extraiu hook
-import { useCompany } from "./hooks/useCompany";
+import { useCompany } from "../hooks/useCompany";
 
 export default function UpdateCompanyPage() {
     const navigate = useNavigate();

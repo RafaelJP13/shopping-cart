@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/shopping_cart
+      POSTGRES_URL: postgresql://postgres:postgres@postgres:5432/shopping_cart
       JWT_SECRET: test-secret
 
     steps:
