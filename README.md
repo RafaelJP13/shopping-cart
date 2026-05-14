@@ -91,7 +91,7 @@ NODE_ENV=development
 POSTGRES_USER=
 POSTGRES_PASSWORD=
 POSTGRES_DB=
-POSTGRES_URL="postgresql://user:password@localhost:5432/dbname"
+POSTGRES_URL="postgresql://postgres:user@password:5432/compre-flow"
 
 ```
 
