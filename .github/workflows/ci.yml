@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      POSTGRES_URL: postgresql://postgres:postgres@postgres:5432/shopping_cart
-      JWT_SECRET: test-secret
+      POSTGRES_URL: ${POSTGRES_URL}
+      JWT_SECRET: ${JWT_SECRET}
 
     steps:
       - name: Checkout repository
