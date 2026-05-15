@@ -38,14 +38,6 @@ export default function LoginPage() {
                 );
             }
 
-            const data = await res.json();
-            const token = data.accessToken
-
-            localStorage.setItem(
-                "token",
-                token
-            );
-
             navigate("/dashboard");
 
         } catch (err: any) {

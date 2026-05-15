@@ -14,6 +14,7 @@ import {
 import { InputMask } from "@react-input/mask";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import fetchWithRefresh from "../../../services/api";
 
 type BrasilApiResponse = {
     razao_social: string;
@@ -153,10 +154,9 @@ export default function CreateCompanyPage() {
         try {
             setLoading(true);
 
-            const response = await fetch(
+            const response = await fetchWithRefresh(
                 "http://localhost:3000/companies",
                 {
-                    credentials: "include",
                     method: "POST",
                     headers: {
                         "Content-Type":
@@ -205,7 +205,7 @@ export default function CreateCompanyPage() {
         } catch (error) {
             console.error(error);
 
-            toast.success("Empresa criada com sucesso!");
+            toast.error("Erro ao criar empresa!");
 
         } finally {
             setLoading(false);

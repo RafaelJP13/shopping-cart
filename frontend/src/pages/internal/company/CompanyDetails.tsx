@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import toast from "react-hot-toast";
+import fetchWithRefresh from "../../../services/api";
 
 interface Company {
     id: string;
@@ -50,10 +51,9 @@ export default function CompanyDetailsPage() {
 
             const token = localStorage.getItem("token");
 
-            const response = await fetch(
+            const response = await fetchWithRefresh(
                 `http://localhost:3000/companies/${id}`,
                 {
-                    credentials: "include",
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

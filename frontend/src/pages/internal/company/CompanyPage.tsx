@@ -8,6 +8,7 @@ import {
     Edit
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import fetchWithRefresh from "../../../services/api";
 
 type Company = {
     id: string;
@@ -48,9 +49,7 @@ export default function CompaniesPage() {
     useEffect(() => {
         const fetchCompanies = async () => {
             try {
-                const res = await fetch("http://localhost:3000/companies", {
-                    credentials: "include",
-                });
+                const res = await fetchWithRefresh("http://localhost:3000/companies");
                 const data = await res.json();
                 setCompanies(data);
             } catch (error) {

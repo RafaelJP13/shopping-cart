@@ -10,6 +10,7 @@ import { AddressSection } from "../components/sections/AddressSection";
 import { ActionsSection } from "../components/sections/ActionsSection";
 
 import { useCompany } from "../hooks/useCompany";
+import fetchWithRefresh from "../../../../services/api";
 
 export default function UpdateCompanyPage() {
     const navigate = useNavigate();
@@ -32,10 +33,9 @@ export default function UpdateCompanyPage() {
 
             const token = localStorage.getItem("token");
 
-            const response = await fetch(
+            const response = await fetchWithRefresh(
                 `http://localhost:3000/companies/${id}`,
                 {
-                    credentials: "include",
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -89,7 +89,7 @@ export default function UpdateCompanyPage() {
 
             const token = localStorage.getItem("token");
 
-            const response = await fetch(
+            const response = await fetchWithRefresh(
                 `http://localhost:3000/companies/${id}`,
                 {
                     credentials: "include",
