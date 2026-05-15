@@ -27,7 +27,6 @@ export class CompanyController {
         @Param('id') id: string,
         @Body() body: UpdateCompanyDTO,
     ) {
-        console.log(id, body);
         return this.companyService.update(
             id,
             body,

@@ -66,12 +66,9 @@ export class CompanyService {
 
     async update(id: string, data: UpdateCompanyDTO) {
 
-
         const company = await this.prisma.company.findUnique({
             where: { id },
         });
-
-        console.log('Company found:', company, id, data);
 
         if (!company) {
             throw new NotFoundException('Empresa não encontrada');

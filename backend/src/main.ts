@@ -7,7 +7,6 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 (async () => {
 
   try {
-    console.clear();
 
     console.log('🚀 Starting CompreFlow...\n');
 
