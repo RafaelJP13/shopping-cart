@@ -12,6 +12,8 @@ import type { Response, Request } from 'express';
 import { JwtService } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { RegisterDto } from './dto/register.dto';
+import { LoginDto } from './dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -22,7 +24,7 @@ export class AuthController {
 
     @Post('register')
     async register(
-        @Body() body: any,
+        @Body() body: RegisterDto,
         @Res({ passthrough: true }) res: Response,
     ) {
         const user = await this.authService.register(body);
@@ -47,7 +49,7 @@ export class AuthController {
 
     @Post('login')
     async login(
-        @Body() body: any,
+        @Body() body: LoginDto,
         @Res({ passthrough: true }) res: Response,
     ) {
         const tokens = await this.authService.login(body);
