@@ -6,6 +6,7 @@ import {
 
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+
 import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
@@ -17,7 +18,9 @@ export class AuthService {
 
     async register(data: any) {
         const userExists = await this.prisma.user.findUnique({
-            where: { email: data.email },
+            where: {
+                email: data.email,
+            },
         });
 
         if (userExists) {
@@ -32,19 +35,31 @@ export class AuthService {
                 email: data.email,
                 password: hashedPassword,
             },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                role: true,
+                companyId: true,
+                createdAt: true,
+                updatedAt: true,
+            },
         });
-        const { password, ...userWithoutPassword } = user;
 
-        return userWithoutPassword;
+        return user;
     }
 
     async login(data: any) {
         const user = await this.prisma.user.findUnique({
-            where: { email: data.email },
+            where: {
+                email: data.email,
+            },
         });
 
         if (!user) {
-            throw new UnauthorizedException('Invalid credentials');
+            throw new UnauthorizedException(
+                'E-mail ou senha inválidos. Tente novamente.',
+            );
         }
 
         const passwordMatch = await bcrypt.compare(
@@ -53,7 +68,9 @@ export class AuthService {
         );
 
         if (!passwordMatch) {
-            throw new UnauthorizedException('Invalid credentials');
+            throw new UnauthorizedException(
+                'E-mail ou senha inválidos. Tente novamente.',
+            );
         }
 
         const tokens = this.generateTokens(user);

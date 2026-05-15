@@ -42,9 +42,7 @@ export class AuthController {
             maxAge: 1000 * 60 * 60 * 24 * 7,
         });
 
-        const { password, ...safeUser } = user;
-
-        return { user: safeUser };
+        return user;
     }
 
     @Post('login')
