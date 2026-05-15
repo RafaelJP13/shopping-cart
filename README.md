@@ -144,7 +144,7 @@ http://localhost:5173
 - [x] Unit Tests
 - [x] Snyk to scan the dependencies
 - [x] Company Dashboard with Next.js
-- [ ] JWT in HttpOnly cookies ( In Progress )
+- [x] JWT in HttpOnly cookies 
 - [ ] UI Componentization
 - [ ] Permission-Based Access Control (PBAC) 
 - [ ] Company Dashboard
