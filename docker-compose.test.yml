@@ -1,8 +1,8 @@
 services:
   backend:
     build:
-      context: .
-      dockerfile: ./infra/Dockerfile.backend.dev
+      context: ./backend
+      dockerfile: ../infra/Dockerfile.backend.dev
 
     working_dir: /app
 
