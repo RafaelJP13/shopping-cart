@@ -12,7 +12,7 @@ services:
       - postgres
 
     environment:
-      POSTGRES_URL: postgresql://postgres:postgres@postgres:5432/app_db
+      POSTGRES_URL: postgresql://postgres:postgres@postgres:5432/compre-flow
       JWT_SECRET: mysecret
   postgres:
     image: postgres:16
@@ -21,6 +21,6 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: app_db
-      POSTGRES_URL: postgresql://postgres:postgres@postgres:5432/app_db
+      POSTGRES_DB: compre-flow
+      POSTGRES_URL: postgresql://postgres:postgres@postgres:5432/compre-flow
       JWT_SECRET: mysecret
