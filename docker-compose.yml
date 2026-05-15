@@ -26,6 +26,7 @@ services:
     environment:
       POSTGRES_URL: ${POSTGRES_URL}
       JWT_SECRET: ${JWT_SECRET}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
   postgres:
     image: postgres:16
     container_name: shopping-cart-db

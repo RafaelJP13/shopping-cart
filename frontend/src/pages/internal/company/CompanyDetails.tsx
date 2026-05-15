@@ -53,6 +53,7 @@ export default function CompanyDetailsPage() {
             const response = await fetch(
                 `http://localhost:3000/companies/${id}`,
                 {
+                    credentials: "include",
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

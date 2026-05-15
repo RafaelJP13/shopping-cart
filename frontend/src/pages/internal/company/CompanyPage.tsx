@@ -48,7 +48,9 @@ export default function CompaniesPage() {
     useEffect(() => {
         const fetchCompanies = async () => {
             try {
-                const res = await fetch("http://localhost:3000/companies");
+                const res = await fetch("http://localhost:3000/companies", {
+                    credentials: "include",
+                });
                 const data = await res.json();
                 setCompanies(data);
             } catch (error) {

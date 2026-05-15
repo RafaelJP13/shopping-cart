@@ -5,13 +5,8 @@ import {
 } from '@nestjs/common';
 
 import { JwtService } from '@nestjs/jwt';
-
 import * as bcrypt from 'bcrypt';
-
 import { PrismaService } from '../../prisma/prisma.service';
-
-import { RegisterDto } from './dto/register.dto';
-import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
@@ -20,11 +15,9 @@ export class AuthService {
         private jwtService: JwtService,
     ) { }
 
-    async register(data: RegisterDto) {
+    async register(data: any) {
         const userExists = await this.prisma.user.findUnique({
-            where: {
-                email: data.email,
-            },
+            where: { email: data.email },
         });
 
         if (userExists) {
@@ -40,26 +33,18 @@ export class AuthService {
                 password: hashedPassword,
             },
         });
-
-        const token = this.generateToken(user);
-
         const { password, ...userWithoutPassword } = user;
 
-        return {
-            user: userWithoutPassword,
-            accessToken: token,
-        };
+        return userWithoutPassword;
     }
 
-    async login(data: LoginDto) {
+    async login(data: any) {
         const user = await this.prisma.user.findUnique({
-            where: {
-                email: data.email,
-            },
+            where: { email: data.email },
         });
 
         if (!user) {
-            throw new UnauthorizedException('E-mail ou senha inválidos. Tente novamente.');
+            throw new UnauthorizedException('Invalid credentials');
         }
 
         const passwordMatch = await bcrypt.compare(
@@ -68,24 +53,34 @@ export class AuthService {
         );
 
         if (!passwordMatch) {
-            throw new UnauthorizedException('E-mail ou senha inválidos. Tente novamente.');
+            throw new UnauthorizedException('Invalid credentials');
         }
 
-        const token = this.generateToken(user);
+        const tokens = this.generateTokens(user);
 
-        const { password, ...userWithoutPassword } = user;
-
-        return {
-            user: userWithoutPassword,
-            accessToken: token,
-        };
+        return tokens;
     }
 
-    generateToken(user: any) {
-        return this.jwtService.sign({
+    generateTokens(user: any) {
+        const payload = {
             sub: user.id,
             email: user.email,
             role: user.role,
+        };
+
+        const accessToken = this.jwtService.sign(payload, {
+            secret: process.env.JWT_SECRET,
+            expiresIn: '15m',
         });
+
+        const refreshToken = this.jwtService.sign(payload, {
+            secret: process.env.JWT_REFRESH_SECRET,
+            expiresIn: '7d',
+        });
+
+        return {
+            accessToken,
+            refreshToken,
+        };
     }
 }

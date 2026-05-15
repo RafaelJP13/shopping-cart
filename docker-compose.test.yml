@@ -23,4 +23,5 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: compre-flow
       POSTGRES_URL: postgresql://postgres:postgres@postgres:5432/compre-flow
-      JWT_SECRET: mysecret
+      JWT_SECRET: super_secret_access
+      JWT_REFRESH_SECRET: super_secret_refresh

@@ -35,6 +35,7 @@ export default function UpdateCompanyPage() {
             const response = await fetch(
                 `http://localhost:3000/companies/${id}`,
                 {
+                    credentials: "include",
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -91,6 +92,7 @@ export default function UpdateCompanyPage() {
             const response = await fetch(
                 `http://localhost:3000/companies/${id}`,
                 {
+                    credentials: "include",
                     method: "PUT",
                     headers: {
                         "Content-Type":

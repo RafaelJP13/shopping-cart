@@ -7,18 +7,19 @@ import { AuthController } from './auth.controller';
 import { JwtStrategy } from './strategies/jwt.strategy';
 
 const jwtSecret = process.env.JWT_SECRET;
+const jwtRefreshSecret = process.env.JWT_REFRESH_SECRET;
 
-if (!jwtSecret) {
-    throw new Error('JWT_SECRET is not defined');
+if (!jwtSecret || !jwtRefreshSecret) {
+    throw new Error('JWT secrets are not defined');
 }
-
 @Module({
     imports: [
         PassportModule,
+
         JwtModule.register({
             secret: jwtSecret,
             signOptions: {
-                expiresIn: '1d',
+                expiresIn: '15m',
             },
         }),
     ],
