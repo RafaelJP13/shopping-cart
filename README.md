@@ -39,12 +39,13 @@ This repository contains both frontend( Web | Mobile) and backend applications.
 - React
 - TypeScript
 - Tailwind CSS
-
+- Next.js
+- 
 ## Backend
 
 - NestJS
-- Node.js
 - TypeScript
+- Prisma
 
 ## Tools & Concepts
 
