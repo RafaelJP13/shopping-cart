@@ -82,7 +82,7 @@ git clone https://github.com/RafaelJP13/compre-flow.git
 
 # 🔧 Setup
 
-The backend requires a `.env` and in the root `.env` file in the root directory. ( REFACTOR ) 
+The backend requires a `.env` and `.env` file in the root directory. ( REFACTOR ) 
 
 ```bash
 JWT_SECRET="CHANGE_THIS_TO_A_LONG_RANDOM_SECRET"
