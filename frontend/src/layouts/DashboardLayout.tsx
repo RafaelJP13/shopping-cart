@@ -12,6 +12,7 @@ import {
     useLocation,
     useNavigate,
 } from "react-router-dom";
+import fetchWithRefresh from "../services/api";
 
 export function DashboardLayout() {
     const [open, setOpen] = useState(false);
@@ -23,9 +24,13 @@ export function DashboardLayout() {
         name: "Rafael",
         email: "rafael@compre-mais.com",
     };
-
-    function handleLogout() {
-        localStorage.removeItem("token");
+    async function handleLogout() {
+        await fetchWithRefresh(
+            "http://localhost:3000/auth/logout",
+            {
+                method: "POST",
+            }
+        );
 
         navigate("/");
     }

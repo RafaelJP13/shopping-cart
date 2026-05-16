@@ -22,6 +22,16 @@ export class AuthController {
         private readonly jwtService: JwtService,
     ) { }
 
+    private get cookieOptions() {
+        return {
+            httpOnly: false,
+            secure: false,
+            sameSite: 'lax' as const,
+            path: '/',
+            domain: 'localhost',
+        };
+    }
+
     @Post('register')
     async register(
         @Body() body: RegisterDto,
@@ -31,16 +41,12 @@ export class AuthController {
         const tokens = this.authService.generateTokens(user);
 
         res.cookie('access_token', tokens.accessToken, {
-            httpOnly: true,
-            secure: false, // true in production (HTTPS)
-            sameSite: 'lax',
+            ...this.cookieOptions,
             maxAge: 1000 * 60 * 15,
         });
 
         res.cookie('refresh_token', tokens.refreshToken, {
-            httpOnly: true,
-            secure: false,
-            sameSite: 'lax',
+            ...this.cookieOptions,
             maxAge: 1000 * 60 * 60 * 24 * 7,
         });
 
@@ -55,16 +61,12 @@ export class AuthController {
         const tokens = await this.authService.login(body);
 
         res.cookie('access_token', tokens.accessToken, {
-            httpOnly: true,
-            secure: false,
-            sameSite: 'lax',
+            ...this.cookieOptions,
             maxAge: 1000 * 60 * 15,
         });
 
         res.cookie('refresh_token', tokens.refreshToken, {
-            httpOnly: true,
-            secure: false,
-            sameSite: 'lax',
+            ...this.cookieOptions,
             maxAge: 1000 * 60 * 60 * 24 * 7,
         });
 
@@ -100,9 +102,7 @@ export class AuthController {
             );
 
             res.cookie('access_token', newAccessToken, {
-                httpOnly: true,
-                secure: false,
-                sameSite: 'lax',
+                ...this.cookieOptions,
                 maxAge: 1000 * 60 * 15,
             });
 
@@ -112,13 +112,19 @@ export class AuthController {
         }
     }
 
-
     @Post('logout')
     logout(@Res({ passthrough: true }) res: Response) {
-        res.clearCookie('access_token');
-        res.clearCookie('refresh_token');
+        res.cookie('access_token', '', {
+            ...this.cookieOptions,
+            maxAge: 0,
+        });
 
-        return { message: 'Logged out' };
+        res.cookie('refresh_token', '', {
+            ...this.cookieOptions,
+            maxAge: 0,
+        });
+
+        return { message: 'Logged out successfully' };
     }
 
     @UseGuards(JwtAuthGuard)

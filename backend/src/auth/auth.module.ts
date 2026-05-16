@@ -14,7 +14,9 @@ if (!jwtSecret || !jwtRefreshSecret) {
 }
 @Module({
     imports: [
-        PassportModule,
+        PassportModule.register({
+            defaultStrategy: 'jwt',
+        }),
 
         JwtModule.register({
             secret: jwtSecret,
