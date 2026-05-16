@@ -136,7 +136,7 @@ http://localhost:5173
 - [x] Frontend with React.js
 - [x] Login & Logout
 - [x] Admin Dashboard
-- [x] Authentication
+- [x] Authentication with JWT in HttpOnly cookies 
 - [x] Unit Tests
 - [x] CI & CD
 - [x] Add React Router
@@ -144,7 +144,6 @@ http://localhost:5173
 - [x] Unit Tests
 - [x] Snyk to scan the dependencies
 - [x] Company Dashboard with Next.js
-- [x] JWT in HttpOnly cookies 
 - [ ] UI Componentization
 - [ ] Permission-Based Access Control (PBAC) 
 - [ ] Company Dashboard
